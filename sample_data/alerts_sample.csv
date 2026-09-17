@@ -1,0 +1,201 @@
+alert_id,cse_id,asset_id,timestamp,severity,category,source,duration_minutes,escalated,case_id
+ALT-000001,CSE-01,CSE-01-AST-025,2026-07-23T01:35:20,Medium,Suspicious PowerShell Execution,Firewall - PaloAlto,30.9,False,
+ALT-000002,CSE-01,CSE-01-AST-007,2026-06-17T18:17:16,Low,Command & Control (C2),OT-Inspector,24.1,False,
+ALT-000003,CSE-01,CSE-01-AST-031,2026-07-23T23:50:23,Low,Lateral Movement,EDR - Sentinel,26.3,False,
+ALT-000004,CSE-01,CSE-01-AST-032,2026-08-26T19:25:42,Medium,Command & Control (C2),NIDS - Suricata,13.6,False,
+ALT-000005,CSE-01,CSE-01-AST-029,2026-06-12T15:48:01,Low,Lateral Movement,EDR - Sentinel,12.7,False,
+ALT-000006,CSE-01,CSE-01-AST-034,2026-07-16T13:38:51,Medium,Data Exfiltration,WAF - Cloudflare,16.1,False,
+ALT-000007,CSE-01,CSE-01-AST-010,2026-08-19T08:46:06,Medium,SCADA Protocol Deviation,Firewall - PaloAlto,22.6,False,
+ALT-000008,CSE-01,CSE-01-AST-023,2026-08-26T19:54:03,High,Suspicious PowerShell Execution,Firewall - PaloAlto,51.1,False,CASE-00001
+ALT-000009,CSE-01,CSE-01-AST-019,2026-07-19T20:49:23,Medium,Brute Force Authentication,OT-Inspector,21.1,False,CASE-00002
+ALT-000010,CSE-01,CSE-01-AST-015,2026-07-07T08:22:42,Medium,Command & Control (C2),OT-Inspector,27.6,False,
+ALT-000011,CSE-01,CSE-01-AST-020,2026-06-18T22:52:25,High,Ransomware Precursor,NIDS - Suricata,36.8,True,CASE-00003
+ALT-000012,CSE-01,CSE-01-AST-011,2026-08-09T13:19:13,Medium,Brute Force Authentication,OT-Inspector,23.1,False,
+ALT-000013,CSE-01,CSE-01-AST-015,2026-06-15T17:03:05,Low,Privilege Escalation,WAF - Cloudflare,34.5,False,
+ALT-000014,CSE-01,CSE-01-AST-008,2026-06-12T14:21:57,Critical,Unauthorized Configuration Change,OT-Inspector,62.9,True,CASE-00004
+ALT-000015,CSE-01,CSE-01-AST-015,2026-08-19T20:26:24,Medium,SCADA Protocol Deviation,OT-Inspector,22.7,False,
+ALT-000016,CSE-01,CSE-01-AST-020,2026-06-15T05:05:20,Critical,Ransomware Precursor,Firewall - PaloAlto,46.7,True,CASE-00005
+ALT-000017,CSE-01,CSE-01-AST-027,2026-08-09T15:15:35,Medium,Privilege Escalation,NIDS - Suricata,26.2,False,
+ALT-000018,CSE-01,CSE-01-AST-016,2026-08-28T13:29:26,High,Suspicious PowerShell Execution,OT-Inspector,44.5,True,CASE-00006
+ALT-000019,CSE-01,CSE-01-AST-002,2026-06-16T16:33:20,High,Data Exfiltration,SIEM - Splunk,51.7,False,CASE-00007
+ALT-000020,CSE-01,CSE-01-AST-001,2026-06-30T11:57:44,Low,SCADA Protocol Deviation,SIEM - Splunk,34.7,False,
+ALT-000021,CSE-01,CSE-01-AST-016,2026-08-24T00:56:19,High,Command & Control (C2),Firewall - PaloAlto,34.4,True,CASE-00008
+ALT-000022,CSE-01,CSE-01-AST-033,2026-07-17T18:41:11,Medium,Suspicious PowerShell Execution,OT-Inspector,28.7,False,
+ALT-000023,CSE-01,CSE-01-AST-004,2026-07-09T16:40:36,Medium,Ransomware Precursor,OT-Inspector,21.8,False,CASE-00009
+ALT-000024,CSE-01,CSE-01-AST-021,2026-06-17T10:00:46,Medium,SCADA Protocol Deviation,Firewall - PaloAlto,18.8,False,
+ALT-000025,CSE-01,CSE-01-AST-014,2026-08-29T04:09:56,Low,Unauthorized Configuration Change,Firewall - PaloAlto,21.5,False,
+ALT-000026,CSE-01,CSE-01-AST-024,2026-06-13T11:22:46,Medium,Brute Force Authentication,EDR - Sentinel,22.9,False,CASE-00010
+ALT-000027,CSE-01,CSE-01-AST-022,2026-06-17T20:15:24,High,Unauthorized Configuration Change,Firewall - PaloAlto,49.0,False,CASE-00011
+ALT-000028,CSE-01,CSE-01-AST-015,2026-08-13T18:28:27,High,Suspicious PowerShell Execution,NIDS - Suricata,41.4,True,CASE-00012
+ALT-000029,CSE-01,CSE-01-AST-002,2026-08-19T22:20:22,Medium,Unauthorized Configuration Change,NIDS - Suricata,27.9,False,CASE-00013
+ALT-000030,CSE-01,CSE-01-AST-010,2026-06-19T20:37:08,Medium,Lateral Movement,Firewall - PaloAlto,14.1,False,
+ALT-000031,CSE-01,CSE-01-AST-021,2026-07-29T12:24:41,High,Brute Force Authentication,SIEM - Splunk,30.0,True,CASE-00014
+ALT-000032,CSE-01,CSE-01-AST-027,2026-08-24T15:26:16,Medium,Suspicious PowerShell Execution,NIDS - Suricata,14.6,False,
+ALT-000033,CSE-01,CSE-01-AST-003,2026-08-26T21:35:43,Medium,Brute Force Authentication,SIEM - Splunk,13.3,False,
+ALT-000034,CSE-01,CSE-01-AST-032,2026-07-03T10:32:18,Medium,Ransomware Precursor,WAF - Cloudflare,20.7,False,
+ALT-000035,CSE-01,CSE-01-AST-028,2026-08-25T12:53:41,High,Ransomware Precursor,WAF - Cloudflare,48.7,True,CASE-00015
+ALT-000036,CSE-01,CSE-01-AST-030,2026-07-22T00:45:33,Low,Privilege Escalation,SIEM - Splunk,14.0,False,
+ALT-000037,CSE-01,CSE-01-AST-020,2026-08-15T14:34:47,Medium,DDoS & Traffic Anomaly,OT-Inspector,29.9,False,CASE-00016
+ALT-000038,CSE-01,CSE-01-AST-007,2026-07-15T23:29:59,Low,Data Exfiltration,OT-Inspector,25.9,False,
+ALT-000039,CSE-01,CSE-01-AST-029,2026-06-23T22:51:46,Medium,SCADA Protocol Deviation,NIDS - Suricata,26.8,False,
+ALT-000040,CSE-01,CSE-01-AST-029,2026-07-11T05:29:46,Medium,Suspicious PowerShell Execution,EDR - Sentinel,25.6,False,
+ALT-000041,CSE-01,CSE-01-AST-019,2026-07-30T16:27:13,Critical,Command & Control (C2),WAF - Cloudflare,69.6,True,CASE-00017
+ALT-000042,CSE-01,CSE-01-AST-013,2026-06-06T16:22:27,Low,SCADA Protocol Deviation,EDR - Sentinel,15.5,False,CASE-00018
+ALT-000043,CSE-01,CSE-01-AST-011,2026-07-27T15:59:55,Medium,SCADA Protocol Deviation,OT-Inspector,20.9,False,
+ALT-000044,CSE-01,CSE-01-AST-022,2026-06-07T22:58:11,Medium,Lateral Movement,OT-Inspector,18.5,False,
+ALT-000045,CSE-01,CSE-01-AST-023,2026-06-20T12:08:14,High,Privilege Escalation,OT-Inspector,43.9,True,CASE-00019
+ALT-000046,CSE-01,CSE-01-AST-006,2026-07-13T04:39:10,Medium,Unauthorized Configuration Change,SIEM - Splunk,20.3,False,
+ALT-000047,CSE-01,CSE-01-AST-010,2026-07-14T17:42:16,High,Privilege Escalation,OT-Inspector,30.4,False,CASE-00020
+ALT-000048,CSE-01,CSE-01-AST-012,2026-06-17T21:44:42,Medium,Privilege Escalation,Firewall - PaloAlto,30.6,False,
+ALT-000049,CSE-01,CSE-01-AST-029,2026-07-23T13:15:49,Medium,Data Exfiltration,SIEM - Splunk,30.0,False,
+ALT-000050,CSE-01,CSE-01-AST-029,2026-07-31T07:03:50,Medium,SCADA Protocol Deviation,SIEM - Splunk,20.8,False,
+ALT-000051,CSE-01,CSE-01-AST-031,2026-08-17T05:02:20,Low,Ransomware Precursor,EDR - Sentinel,14.4,False,
+ALT-000052,CSE-01,CSE-01-AST-010,2026-06-11T05:50:12,Medium,Unauthorized Configuration Change,NIDS - Suricata,32.9,False,
+ALT-000053,CSE-01,CSE-01-AST-016,2026-07-24T01:56:20,Medium,Command & Control (C2),EDR - Sentinel,17.2,False,
+ALT-000054,CSE-01,CSE-01-AST-003,2026-08-23T12:12:27,Low,Privilege Escalation,OT-Inspector,28.0,False,CASE-00021
+ALT-000055,CSE-01,CSE-01-AST-034,2026-07-03T07:51:06,Low,Unauthorized Configuration Change,SIEM - Splunk,17.5,False,CASE-00022
+ALT-000056,CSE-01,CSE-01-AST-016,2026-08-03T21:43:35,Medium,Unauthorized Configuration Change,WAF - Cloudflare,12.0,False,
+ALT-000057,CSE-01,CSE-01-AST-005,2026-06-24T03:07:01,Medium,Command & Control (C2),EDR - Sentinel,30.1,False,
+ALT-000058,CSE-01,CSE-01-AST-017,2026-07-31T01:35:06,Medium,Command & Control (C2),OT-Inspector,13.6,False,
+ALT-000059,CSE-01,CSE-01-AST-009,2026-06-14T21:11:11,Medium,Command & Control (C2),OT-Inspector,30.7,False,
+ALT-000060,CSE-01,CSE-01-AST-005,2026-08-29T17:25:22,Medium,Privilege Escalation,SIEM - Splunk,12.9,False,
+ALT-000061,CSE-01,CSE-01-AST-031,2026-07-11T11:17:22,Medium,Unauthorized Configuration Change,EDR - Sentinel,16.4,False,
+ALT-000062,CSE-01,CSE-01-AST-028,2026-07-13T09:56:51,High,Command & Control (C2),SIEM - Splunk,49.5,True,CASE-00023
+ALT-000063,CSE-01,CSE-01-AST-006,2026-08-06T09:42:39,Low,DDoS & Traffic Anomaly,EDR - Sentinel,16.2,False,
+ALT-000064,CSE-01,CSE-01-AST-028,2026-07-12T10:45:50,Medium,SCADA Protocol Deviation,NIDS - Suricata,22.3,False,
+ALT-000065,CSE-01,CSE-01-AST-005,2026-07-26T09:59:46,Medium,Ransomware Precursor,SIEM - Splunk,23.8,False,
+ALT-000066,CSE-01,CSE-01-AST-003,2026-06-19T22:07:15,Medium,Suspicious PowerShell Execution,WAF - Cloudflare,26.8,False,
+ALT-000067,CSE-01,CSE-01-AST-024,2026-08-17T05:35:11,Medium,Command & Control (C2),NIDS - Suricata,15.2,False,
+ALT-000068,CSE-01,CSE-01-AST-012,2026-07-06T09:05:17,Low,Ransomware Precursor,NIDS - Suricata,24.9,False,
+ALT-000069,CSE-01,CSE-01-AST-032,2026-07-28T07:48:44,Low,Brute Force Authentication,OT-Inspector,13.7,False,
+ALT-000070,CSE-01,CSE-01-AST-035,2026-06-12T11:38:09,Medium,Lateral Movement,OT-Inspector,15.6,False,
+ALT-000071,CSE-01,CSE-01-AST-013,2026-06-23T13:09:41,Medium,Lateral Movement,WAF - Cloudflare,23.4,False,
+ALT-000072,CSE-01,CSE-01-AST-005,2026-07-30T20:05:05,High,Lateral Movement,Firewall - PaloAlto,45.3,True,CASE-00024
+ALT-000073,CSE-01,CSE-01-AST-023,2026-06-10T16:22:59,Medium,Unauthorized Configuration Change,SIEM - Splunk,24.7,False,
+ALT-000074,CSE-01,CSE-01-AST-010,2026-08-04T02:01:03,Low,Unauthorized Configuration Change,WAF - Cloudflare,33.5,False,
+ALT-000075,CSE-01,CSE-01-AST-018,2026-06-11T09:07:27,High,Unauthorized Configuration Change,SIEM - Splunk,40.8,True,CASE-00025
+ALT-000076,CSE-01,CSE-01-AST-003,2026-08-17T12:17:32,Low,SCADA Protocol Deviation,WAF - Cloudflare,13.0,False,
+ALT-000077,CSE-01,CSE-01-AST-002,2026-08-23T07:40:31,Low,DDoS & Traffic Anomaly,Firewall - PaloAlto,18.7,False,
+ALT-000078,CSE-01,CSE-01-AST-004,2026-08-27T14:47:07,Medium,Lateral Movement,SIEM - Splunk,22.7,False,
+ALT-000079,CSE-01,CSE-01-AST-024,2026-07-11T12:34:28,Low,Privilege Escalation,Firewall - PaloAlto,17.6,False,CASE-00026
+ALT-000080,CSE-01,CSE-01-AST-021,2026-08-18T15:13:25,High,Privilege Escalation,WAF - Cloudflare,32.6,True,CASE-00027
+ALT-000081,CSE-01,CSE-01-AST-014,2026-06-12T14:19:03,Medium,Data Exfiltration,OT-Inspector,18.5,False,
+ALT-000082,CSE-01,CSE-01-AST-028,2026-07-31T10:24:13,Medium,Lateral Movement,EDR - Sentinel,20.4,False,
+ALT-000083,CSE-01,CSE-01-AST-019,2026-06-07T20:45:47,Medium,Command & Control (C2),WAF - Cloudflare,29.6,False,
+ALT-000084,CSE-01,CSE-01-AST-026,2026-08-18T04:19:32,High,Lateral Movement,SIEM - Splunk,41.4,True,CASE-00028
+ALT-000085,CSE-01,CSE-01-AST-031,2026-06-06T01:25:00,High,Command & Control (C2),WAF - Cloudflare,49.4,True,CASE-00029
+ALT-000086,CSE-01,CSE-01-AST-035,2026-07-09T21:37:00,Medium,Unauthorized Configuration Change,NIDS - Suricata,22.9,False,CASE-00030
+ALT-000087,CSE-01,CSE-01-AST-017,2026-08-28T22:54:38,Critical,Suspicious PowerShell Execution,OT-Inspector,66.7,True,CASE-00031
+ALT-000088,CSE-01,CSE-01-AST-003,2026-08-19T13:50:32,High,Data Exfiltration,Firewall - PaloAlto,32.6,True,CASE-00032
+ALT-000089,CSE-01,CSE-01-AST-009,2026-08-18T17:10:14,Low,Ransomware Precursor,Firewall - PaloAlto,35.0,False,
+ALT-000090,CSE-01,CSE-01-AST-035,2026-06-23T16:44:09,Low,Command & Control (C2),OT-Inspector,28.6,False,
+ALT-000091,CSE-01,CSE-01-AST-018,2026-08-18T17:37:42,High,Data Exfiltration,NIDS - Suricata,51.3,True,CASE-00033
+ALT-000092,CSE-01,CSE-01-AST-019,2026-07-15T20:24:24,Low,Brute Force Authentication,NIDS - Suricata,20.7,False,
+ALT-000093,CSE-01,CSE-01-AST-023,2026-07-08T01:31:53,Medium,Lateral Movement,WAF - Cloudflare,29.2,False,
+ALT-000094,CSE-01,CSE-01-AST-016,2026-08-11T09:53:21,High,SCADA Protocol Deviation,EDR - Sentinel,40.7,True,CASE-00034
+ALT-000095,CSE-01,CSE-01-AST-011,2026-08-27T05:00:18,Critical,Unauthorized Configuration Change,SIEM - Splunk,70.5,True,CASE-00035
+ALT-000096,CSE-01,CSE-01-AST-003,2026-06-12T23:44:58,Medium,Unauthorized Configuration Change,EDR - Sentinel,32.3,False,
+ALT-000097,CSE-01,CSE-01-AST-003,2026-08-03T06:47:00,Low,Brute Force Authentication,NIDS - Suricata,14.5,False,
+ALT-000098,CSE-01,CSE-01-AST-033,2026-08-22T19:46:51,Medium,Privilege Escalation,Firewall - PaloAlto,14.6,False,
+ALT-000099,CSE-01,CSE-01-AST-019,2026-07-03T06:46:45,Critical,Command & Control (C2),Firewall - PaloAlto,44.5,True,CASE-00036
+ALT-000100,CSE-01,CSE-01-AST-021,2026-06-13T06:43:39,Low,Suspicious PowerShell Execution,NIDS - Suricata,20.8,False,
+ALT-000101,CSE-01,CSE-01-AST-017,2026-07-09T21:12:24,Medium,Ransomware Precursor,NIDS - Suricata,13.4,False,CASE-00037
+ALT-000102,CSE-01,CSE-01-AST-024,2026-07-10T04:16:29,Medium,Brute Force Authentication,OT-Inspector,15.1,False,
+ALT-000103,CSE-01,CSE-01-AST-035,2026-07-18T15:08:25,Medium,Suspicious PowerShell Execution,WAF - Cloudflare,29.5,False,
+ALT-000104,CSE-01,CSE-01-AST-005,2026-08-07T16:15:56,Medium,Command & Control (C2),SIEM - Splunk,31.1,False,
+ALT-000105,CSE-01,CSE-01-AST-029,2026-08-08T05:27:21,High,Unauthorized Configuration Change,WAF - Cloudflare,42.0,True,CASE-00038
+ALT-000106,CSE-01,CSE-01-AST-020,2026-07-29T20:31:52,High,Suspicious PowerShell Execution,WAF - Cloudflare,47.6,False,CASE-00039
+ALT-000107,CSE-01,CSE-01-AST-003,2026-06-08T02:30:46,Low,Suspicious PowerShell Execution,OT-Inspector,15.1,False,
+ALT-000108,CSE-01,CSE-01-AST-029,2026-07-24T13:38:01,Low,DDoS & Traffic Anomaly,OT-Inspector,20.6,False,
+ALT-000109,CSE-01,CSE-01-AST-012,2026-06-18T23:47:40,Low,Lateral Movement,EDR - Sentinel,14.9,False,
+ALT-000110,CSE-01,CSE-01-AST-028,2026-07-09T16:51:26,Medium,Unauthorized Configuration Change,NIDS - Suricata,17.7,False,
+ALT-000111,CSE-01,CSE-01-AST-002,2026-06-15T01:10:22,Low,DDoS & Traffic Anomaly,OT-Inspector,25.7,False,
+ALT-000112,CSE-01,CSE-01-AST-029,2026-06-07T08:54:37,Medium,DDoS & Traffic Anomaly,WAF - Cloudflare,31.9,False,CASE-00040
+ALT-000113,CSE-01,CSE-01-AST-034,2026-08-26T11:40:30,High,Privilege Escalation,OT-Inspector,29.5,False,CASE-00041
+ALT-000114,CSE-01,CSE-01-AST-027,2026-08-22T13:52:38,Low,Command & Control (C2),SIEM - Splunk,16.2,False,
+ALT-000115,CSE-01,CSE-01-AST-027,2026-07-09T05:15:20,Low,Ransomware Precursor,SIEM - Splunk,15.1,False,
+ALT-000116,CSE-01,CSE-01-AST-006,2026-08-22T02:52:43,Low,Command & Control (C2),WAF - Cloudflare,13.2,False,
+ALT-000117,CSE-01,CSE-01-AST-014,2026-06-06T02:38:59,High,SCADA Protocol Deviation,EDR - Sentinel,36.0,False,CASE-00042
+ALT-000118,CSE-01,CSE-01-AST-026,2026-08-01T08:49:57,Medium,Data Exfiltration,WAF - Cloudflare,29.8,False,
+ALT-000119,CSE-01,CSE-01-AST-032,2026-07-16T11:13:45,Medium,Unauthorized Configuration Change,NIDS - Suricata,28.6,False,
+ALT-000120,CSE-01,CSE-01-AST-015,2026-07-18T11:23:35,Medium,SCADA Protocol Deviation,OT-Inspector,24.7,False,
+ALT-000121,CSE-01,CSE-01-AST-025,2026-07-08T05:32:56,High,Data Exfiltration,NIDS - Suricata,41.2,False,CASE-00043
+ALT-000122,CSE-01,CSE-01-AST-032,2026-06-22T12:49:20,High,Unauthorized Configuration Change,WAF - Cloudflare,51.8,False,CASE-00044
+ALT-000123,CSE-01,CSE-01-AST-001,2026-06-18T22:57:47,High,Privilege Escalation,WAF - Cloudflare,29.5,True,CASE-00045
+ALT-000124,CSE-01,CSE-01-AST-018,2026-08-10T14:58:34,Critical,Unauthorized Configuration Change,Firewall - PaloAlto,56.6,True,CASE-00046
+ALT-000125,CSE-01,CSE-01-AST-023,2026-07-01T06:59:16,Medium,Brute Force Authentication,WAF - Cloudflare,20.6,False,
+ALT-000126,CSE-01,CSE-01-AST-003,2026-08-29T08:13:23,Medium,Lateral Movement,EDR - Sentinel,24.7,False,CASE-00047
+ALT-000127,CSE-01,CSE-01-AST-034,2026-07-13T20:36:07,Low,Lateral Movement,WAF - Cloudflare,32.7,False,
+ALT-000128,CSE-01,CSE-01-AST-035,2026-07-05T01:41:42,Low,Brute Force Authentication,SIEM - Splunk,33.4,False,
+ALT-000129,CSE-01,CSE-01-AST-011,2026-06-19T14:30:05,Low,Brute Force Authentication,WAF - Cloudflare,31.5,False,
+ALT-000130,CSE-01,CSE-01-AST-033,2026-07-20T05:05:43,Low,Lateral Movement,EDR - Sentinel,14.2,False,
+ALT-000131,CSE-01,CSE-01-AST-021,2026-08-17T22:21:00,Low,DDoS & Traffic Anomaly,NIDS - Suricata,34.8,False,
+ALT-000132,CSE-01,CSE-01-AST-025,2026-07-19T15:43:23,High,SCADA Protocol Deviation,EDR - Sentinel,47.2,False,CASE-00048
+ALT-000133,CSE-01,CSE-01-AST-001,2026-07-20T11:31:47,Medium,Lateral Movement,EDR - Sentinel,29.5,False,CASE-00049
+ALT-000134,CSE-01,CSE-01-AST-006,2026-06-14T00:57:22,High,Unauthorized Configuration Change,Firewall - PaloAlto,48.7,True,CASE-00050
+ALT-000135,CSE-01,CSE-01-AST-011,2026-07-02T20:49:27,Medium,DDoS & Traffic Anomaly,Firewall - PaloAlto,23.3,False,CASE-00051
+ALT-000136,CSE-01,CSE-01-AST-013,2026-07-03T08:58:41,Medium,Suspicious PowerShell Execution,WAF - Cloudflare,12.2,False,
+ALT-000137,CSE-01,CSE-01-AST-009,2026-07-13T16:01:40,Medium,SCADA Protocol Deviation,SIEM - Splunk,28.0,False,
+ALT-000138,CSE-01,CSE-01-AST-016,2026-07-11T10:36:40,Medium,Suspicious PowerShell Execution,WAF - Cloudflare,30.1,False,
+ALT-000139,CSE-01,CSE-01-AST-002,2026-08-15T19:51:56,High,Unauthorized Configuration Change,NIDS - Suricata,45.0,True,CASE-00052
+ALT-000140,CSE-01,CSE-01-AST-028,2026-07-09T08:48:42,Medium,Privilege Escalation,Firewall - PaloAlto,34.8,False,
+ALT-000141,CSE-01,CSE-01-AST-035,2026-08-04T15:13:47,Medium,Command & Control (C2),OT-Inspector,14.5,False,
+ALT-000142,CSE-01,CSE-01-AST-026,2026-06-22T23:33:23,Medium,SCADA Protocol Deviation,EDR - Sentinel,30.3,False,CASE-00053
+ALT-000143,CSE-01,CSE-01-AST-026,2026-08-28T20:56:37,High,Command & Control (C2),EDR - Sentinel,44.6,True,CASE-00054
+ALT-000144,CSE-01,CSE-01-AST-023,2026-06-11T04:13:33,Low,Privilege Escalation,Firewall - PaloAlto,16.8,False,
+ALT-000145,CSE-01,CSE-01-AST-003,2026-07-27T16:28:23,Medium,Brute Force Authentication,OT-Inspector,31.5,False,
+ALT-000146,CSE-01,CSE-01-AST-022,2026-07-02T18:47:12,High,Privilege Escalation,SIEM - Splunk,33.6,True,CASE-00055
+ALT-000147,CSE-01,CSE-01-AST-025,2026-08-18T07:11:03,Medium,DDoS & Traffic Anomaly,EDR - Sentinel,18.4,False,
+ALT-000148,CSE-01,CSE-01-AST-013,2026-06-14T19:32:51,High,Command & Control (C2),OT-Inspector,48.7,True,CASE-00056
+ALT-000149,CSE-01,CSE-01-AST-012,2026-06-15T12:40:03,Medium,Suspicious PowerShell Execution,EDR - Sentinel,18.8,False,
+ALT-000150,CSE-01,CSE-01-AST-008,2026-06-18T11:24:09,High,Brute Force Authentication,SIEM - Splunk,40.3,True,CASE-00057
+ALT-000151,CSE-01,CSE-01-AST-011,2026-08-08T23:29:35,Low,Privilege Escalation,EDR - Sentinel,19.2,False,
+ALT-000152,CSE-01,CSE-01-AST-033,2026-06-02T17:38:38,High,DDoS & Traffic Anomaly,Firewall - PaloAlto,39.8,False,CASE-00058
+ALT-000153,CSE-01,CSE-01-AST-035,2026-06-29T10:38:04,Critical,Data Exfiltration,Firewall - PaloAlto,58.9,True,CASE-00059
+ALT-000154,CSE-01,CSE-01-AST-029,2026-08-09T13:21:25,Medium,Ransomware Precursor,SIEM - Splunk,14.4,False,
+ALT-000155,CSE-01,CSE-01-AST-029,2026-06-05T16:22:27,Medium,Lateral Movement,OT-Inspector,30.7,False,
+ALT-000156,CSE-01,CSE-01-AST-028,2026-08-28T12:45:57,Low,SCADA Protocol Deviation,EDR - Sentinel,16.8,False,
+ALT-000157,CSE-01,CSE-01-AST-011,2026-07-15T19:22:47,Medium,Unauthorized Configuration Change,WAF - Cloudflare,18.7,False,
+ALT-000158,CSE-01,CSE-01-AST-004,2026-06-13T04:56:11,Low,DDoS & Traffic Anomaly,SIEM - Splunk,14.9,False,
+ALT-000159,CSE-01,CSE-01-AST-032,2026-07-12T09:00:47,Low,DDoS & Traffic Anomaly,EDR - Sentinel,26.4,False,
+ALT-000160,CSE-01,CSE-01-AST-024,2026-06-12T14:40:02,Medium,Brute Force Authentication,OT-Inspector,25.4,False,
+ALT-000161,CSE-01,CSE-01-AST-005,2026-07-29T23:06:49,Medium,Command & Control (C2),Firewall - PaloAlto,34.3,False,
+ALT-000162,CSE-01,CSE-01-AST-009,2026-07-12T10:19:31,Medium,SCADA Protocol Deviation,EDR - Sentinel,19.9,False,
+ALT-000163,CSE-01,CSE-01-AST-002,2026-06-13T22:47:54,Low,Suspicious PowerShell Execution,Firewall - PaloAlto,22.1,False,CASE-00060
+ALT-000164,CSE-01,CSE-01-AST-006,2026-07-06T03:23:54,Medium,Brute Force Authentication,NIDS - Suricata,15.8,False,
+ALT-000165,CSE-01,CSE-01-AST-007,2026-08-29T08:31:29,Medium,Lateral Movement,OT-Inspector,15.1,False,
+ALT-000166,CSE-01,CSE-01-AST-028,2026-06-02T00:17:36,Medium,Lateral Movement,EDR - Sentinel,17.3,False,CASE-00061
+ALT-000167,CSE-01,CSE-01-AST-005,2026-06-18T23:21:32,Low,Privilege Escalation,OT-Inspector,27.0,False,
+ALT-000168,CSE-01,CSE-01-AST-029,2026-08-20T05:30:40,Low,SCADA Protocol Deviation,WAF - Cloudflare,14.3,False,
+ALT-000169,CSE-01,CSE-01-AST-009,2026-07-20T12:47:56,Low,Command & Control (C2),OT-Inspector,17.7,False,
+ALT-000170,CSE-01,CSE-01-AST-014,2026-07-07T00:58:35,Low,Brute Force Authentication,EDR - Sentinel,29.2,False,
+ALT-000171,CSE-01,CSE-01-AST-005,2026-08-03T14:02:58,High,Suspicious PowerShell Execution,SIEM - Splunk,51.7,False,CASE-00062
+ALT-000172,CSE-01,CSE-01-AST-001,2026-07-31T02:39:27,Critical,Lateral Movement,WAF - Cloudflare,40.2,True,CASE-00063
+ALT-000173,CSE-01,CSE-01-AST-035,2026-07-25T14:38:47,High,Unauthorized Configuration Change,SIEM - Splunk,35.4,True,CASE-00064
+ALT-000174,CSE-01,CSE-01-AST-016,2026-08-23T23:24:59,High,DDoS & Traffic Anomaly,WAF - Cloudflare,38.4,True,CASE-00065
+ALT-000175,CSE-01,CSE-01-AST-001,2026-06-23T04:20:55,Critical,Privilege Escalation,OT-Inspector,57.4,True,CASE-00066
+ALT-000176,CSE-01,CSE-01-AST-022,2026-07-05T04:17:53,Low,Ransomware Precursor,WAF - Cloudflare,13.5,False,
+ALT-000177,CSE-01,CSE-01-AST-004,2026-06-10T18:03:51,Medium,Command & Control (C2),EDR - Sentinel,20.5,False,
+ALT-000178,CSE-01,CSE-01-AST-001,2026-08-26T04:11:57,High,Unauthorized Configuration Change,Firewall - PaloAlto,33.9,True,CASE-00067
+ALT-000179,CSE-01,CSE-01-AST-016,2026-08-10T23:52:24,Medium,Command & Control (C2),NIDS - Suricata,18.2,False,CASE-00068
+ALT-000180,CSE-01,CSE-01-AST-030,2026-08-06T01:40:19,Low,Lateral Movement,Firewall - PaloAlto,19.1,False,CASE-00069
+ALT-000181,CSE-01,CSE-01-AST-032,2026-08-19T08:49:55,Medium,SCADA Protocol Deviation,SIEM - Splunk,28.8,False,
+ALT-000182,CSE-01,CSE-01-AST-023,2026-06-01T14:55:44,Critical,Unauthorized Configuration Change,OT-Inspector,38.4,True,CASE-00070
+ALT-000183,CSE-01,CSE-01-AST-010,2026-08-07T08:40:17,Medium,Ransomware Precursor,WAF - Cloudflare,33.2,False,
+ALT-000184,CSE-01,CSE-01-AST-007,2026-08-29T13:33:43,Medium,Lateral Movement,EDR - Sentinel,21.1,False,
+ALT-000185,CSE-01,CSE-01-AST-021,2026-08-24T04:45:32,High,Brute Force Authentication,Firewall - PaloAlto,48.0,True,CASE-00071
+ALT-000186,CSE-01,CSE-01-AST-029,2026-08-14T03:58:03,High,Privilege Escalation,SIEM - Splunk,40.9,False,CASE-00072
+ALT-000187,CSE-01,CSE-01-AST-003,2026-06-21T11:04:34,Low,SCADA Protocol Deviation,NIDS - Suricata,15.4,False,
+ALT-000188,CSE-01,CSE-01-AST-012,2026-08-05T01:46:56,Medium,Brute Force Authentication,SIEM - Splunk,22.4,False,
+ALT-000189,CSE-01,CSE-01-AST-008,2026-07-30T03:42:37,Low,Privilege Escalation,Firewall - PaloAlto,34.6,False,CASE-00073
+ALT-000190,CSE-01,CSE-01-AST-029,2026-06-10T00:47:37,Low,Data Exfiltration,EDR - Sentinel,31.5,False,
+ALT-000191,CSE-01,CSE-01-AST-028,2026-07-30T01:50:37,High,SCADA Protocol Deviation,SIEM - Splunk,28.7,False,CASE-00074
+ALT-000192,CSE-01,CSE-01-AST-016,2026-06-20T01:15:41,Medium,SCADA Protocol Deviation,EDR - Sentinel,32.3,False,
+ALT-000193,CSE-01,CSE-01-AST-016,2026-07-20T04:59:47,Medium,Unauthorized Configuration Change,OT-Inspector,30.3,False,
+ALT-000194,CSE-01,CSE-01-AST-033,2026-08-01T19:49:31,Low,Command & Control (C2),EDR - Sentinel,12.6,False,
+ALT-000195,CSE-01,CSE-01-AST-015,2026-06-08T17:10:24,Medium,SCADA Protocol Deviation,OT-Inspector,27.1,False,
+ALT-000196,CSE-01,CSE-01-AST-023,2026-06-29T20:57:37,Low,DDoS & Traffic Anomaly,NIDS - Suricata,16.0,False,
+ALT-000197,CSE-01,CSE-01-AST-023,2026-08-29T13:03:46,Low,Ransomware Precursor,Firewall - PaloAlto,25.0,False,
+ALT-000198,CSE-01,CSE-01-AST-004,2026-07-10T06:23:30,Medium,Lateral Movement,WAF - Cloudflare,24.1,False,CASE-00075
+ALT-000199,CSE-01,CSE-01-AST-010,2026-07-12T02:10:06,Critical,SCADA Protocol Deviation,NIDS - Suricata,69.8,False,CASE-00076
+ALT-000200,CSE-01,CSE-01-AST-032,2026-06-18T05:44:04,Medium,DDoS & Traffic Anomaly,WAF - Cloudflare,34.3,False,

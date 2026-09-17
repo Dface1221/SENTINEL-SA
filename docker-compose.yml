@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  sat-sa-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nciipc-sat-sa
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=sqlite:///./sat_sa.db
+      - HOST=0.0.0.0
+      - PORT=8000
+    volumes:
+      - sat_sa_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  sat_sa_data:

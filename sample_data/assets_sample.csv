@@ -1,0 +1,101 @@
+asset_id,cse_id,asset_name,asset_type,criticality,telemetry_expected,telemetry_received
+CSE-01-AST-001,CSE-01,CSE-01 Core Banking DB #1,Core Banking DB,Critical,903,877
+CSE-01-AST-002,CSE-01,CSE-01 SWIFT Gateway #2,SWIFT Gateway,Critical,928,862
+CSE-01-AST-003,CSE-01,CSE-01 Core Banking DB #3,Core Banking DB,Critical,986,958
+CSE-01-AST-004,CSE-01,CSE-01 Transaction API #4,Transaction API,Critical,911,875
+CSE-01-AST-005,CSE-01,CSE-01 Core Banking DB #5,Core Banking DB,Critical,903,836
+CSE-01-AST-006,CSE-01,CSE-01 SWIFT Gateway #6,SWIFT Gateway,Critical,964,927
+CSE-01-AST-007,CSE-01,CSE-01 Transaction API #7,Transaction API,Critical,925,897
+CSE-01-AST-008,CSE-01,CSE-01 Transaction API #8,Transaction API,Critical,953,891
+CSE-01-AST-009,CSE-01,CSE-01 Transaction API #9,Transaction API,High,935,913
+CSE-01-AST-010,CSE-01,CSE-01 Core Banking DB #10,Core Banking DB,High,997,973
+CSE-01-AST-011,CSE-01,CSE-01 Active Directory DC #11,Active Directory DC,High,943,885
+CSE-01-AST-012,CSE-01,CSE-01 SWIFT Gateway #12,SWIFT Gateway,High,997,940
+CSE-01-AST-013,CSE-01,CSE-01 Core Banking DB #13,Core Banking DB,High,948,878
+CSE-01-AST-014,CSE-01,CSE-01 HSM Cluster #14,HSM Cluster,High,977,916
+CSE-01-AST-015,CSE-01,CSE-01 Core Banking DB #15,Core Banking DB,High,993,945
+CSE-01-AST-016,CSE-01,CSE-01 Core Banking DB #16,Core Banking DB,High,948,877
+CSE-01-AST-017,CSE-01,CSE-01 HSM Cluster #17,HSM Cluster,High,980,944
+CSE-01-AST-018,CSE-01,CSE-01 HSM Cluster #18,HSM Cluster,High,973,908
+CSE-01-AST-019,CSE-01,CSE-01 Core Banking DB #19,Core Banking DB,Medium,905,874
+CSE-01-AST-020,CSE-01,CSE-01 HSM Cluster #20,HSM Cluster,Medium,910,891
+CSE-01-AST-021,CSE-01,CSE-01 Core Banking DB #21,Core Banking DB,Medium,948,890
+CSE-01-AST-022,CSE-01,CSE-01 HSM Cluster #22,HSM Cluster,Medium,920,870
+CSE-01-AST-023,CSE-01,CSE-01 SWIFT Gateway #23,SWIFT Gateway,Medium,985,924
+CSE-01-AST-024,CSE-01,CSE-01 Core Banking DB #24,Core Banking DB,Medium,977,942
+CSE-01-AST-025,CSE-01,CSE-01 Transaction API #25,Transaction API,Medium,993,930
+CSE-01-AST-026,CSE-01,CSE-01 Active Directory DC #26,Active Directory DC,Medium,948,890
+CSE-01-AST-027,CSE-01,CSE-01 Transaction API #27,Transaction API,Medium,928,898
+CSE-01-AST-028,CSE-01,CSE-01 Core Banking DB #28,Core Banking DB,Medium,929,908
+CSE-01-AST-029,CSE-01,CSE-01 HSM Cluster #29,HSM Cluster,Medium,951,892
+CSE-01-AST-030,CSE-01,CSE-01 SWIFT Gateway #30,SWIFT Gateway,Medium,972,953
+CSE-01-AST-031,CSE-01,CSE-01 HSM Cluster #31,HSM Cluster,Medium,927,895
+CSE-01-AST-032,CSE-01,CSE-01 Active Directory DC #32,Active Directory DC,Medium,982,934
+CSE-01-AST-033,CSE-01,CSE-01 HSM Cluster #33,HSM Cluster,Medium,917,859
+CSE-01-AST-034,CSE-01,CSE-01 Transaction API #34,Transaction API,Medium,968,908
+CSE-01-AST-035,CSE-01,CSE-01 Transaction API #35,Transaction API,Medium,954,937
+CSE-02-AST-001,CSE-02,CSE-02 AAA Radius Server #1,AAA Radius Server,Critical,946,884
+CSE-02-AST-002,CSE-02,CSE-02 HLR/HSS Node #2,HLR/HSS Node,Critical,965,921
+CSE-02-AST-003,CSE-02,CSE-02 BGP Core Router #3,BGP Core Router,Critical,914,850
+CSE-02-AST-004,CSE-02,CSE-02 HLR/HSS Node #4,HLR/HSS Node,Critical,987,937
+CSE-02-AST-005,CSE-02,CSE-02 BGP Core Router #5,BGP Core Router,Critical,949,898
+CSE-02-AST-006,CSE-02,CSE-02 AAA Radius Server #6,AAA Radius Server,Critical,967,906
+CSE-02-AST-007,CSE-02,CSE-02 DNS Resolver #7,DNS Resolver,Critical,901,871
+CSE-02-AST-008,CSE-02,CSE-02 BGP Core Router #8,BGP Core Router,Critical,987,969
+CSE-02-AST-009,CSE-02,CSE-02 Billing DB Server #9,Billing DB Server,High,998,962
+CSE-02-AST-010,CSE-02,CSE-02 BGP Core Router #10,BGP Core Router,High,937,890
+CSE-02-AST-011,CSE-02,CSE-02 AAA Radius Server #11,AAA Radius Server,High,900,888
+CSE-02-AST-012,CSE-02,CSE-02 Billing DB Server #12,Billing DB Server,High,964,938
+CSE-02-AST-013,CSE-02,CSE-02 DNS Resolver #13,DNS Resolver,High,913,895
+CSE-02-AST-014,CSE-02,CSE-02 Billing DB Server #14,Billing DB Server,High,981,937
+CSE-02-AST-015,CSE-02,CSE-02 HLR/HSS Node #15,HLR/HSS Node,High,919,869
+CSE-02-AST-016,CSE-02,CSE-02 HLR/HSS Node #16,HLR/HSS Node,High,969,956
+CSE-02-AST-017,CSE-02,CSE-02 DNS Resolver #17,DNS Resolver,High,900,865
+CSE-02-AST-018,CSE-02,CSE-02 AAA Radius Server #18,AAA Radius Server,High,902,836
+CSE-02-AST-019,CSE-02,CSE-02 Billing DB Server #19,Billing DB Server,Medium,939,879
+CSE-02-AST-020,CSE-02,CSE-02 HLR/HSS Node #20,HLR/HSS Node,Medium,972,958
+CSE-02-AST-021,CSE-02,CSE-02 BGP Core Router #21,BGP Core Router,Medium,993,947
+CSE-02-AST-022,CSE-02,CSE-02 BGP Core Router #22,BGP Core Router,Medium,997,954
+CSE-02-AST-023,CSE-02,CSE-02 HLR/HSS Node #23,HLR/HSS Node,Medium,916,885
+CSE-02-AST-024,CSE-02,CSE-02 DNS Resolver #24,DNS Resolver,Medium,921,864
+CSE-02-AST-025,CSE-02,CSE-02 DNS Resolver #25,DNS Resolver,Medium,954,942
+CSE-02-AST-026,CSE-02,CSE-02 DNS Resolver #26,DNS Resolver,Medium,996,967
+CSE-02-AST-027,CSE-02,CSE-02 HLR/HSS Node #27,HLR/HSS Node,Medium,991,933
+CSE-02-AST-028,CSE-02,CSE-02 Billing DB Server #28,Billing DB Server,Medium,956,939
+CSE-02-AST-029,CSE-02,CSE-02 AAA Radius Server #29,AAA Radius Server,Medium,915,857
+CSE-02-AST-030,CSE-02,CSE-02 BGP Core Router #30,BGP Core Router,Medium,943,868
+CSE-02-AST-031,CSE-02,CSE-02 DNS Resolver #31,DNS Resolver,Medium,929,892
+CSE-02-AST-032,CSE-02,CSE-02 BGP Core Router #32,BGP Core Router,Medium,909,881
+CSE-02-AST-033,CSE-02,CSE-02 BGP Core Router #33,BGP Core Router,Medium,929,859
+CSE-02-AST-034,CSE-02,CSE-02 BGP Core Router #34,BGP Core Router,Medium,942,871
+CSE-02-AST-035,CSE-02,CSE-02 HLR/HSS Node #35,HLR/HSS Node,Medium,935,903
+CSE-03-AST-001,CSE-03,CSE-03 Database Cluster #1,Database Cluster,Critical,969,900
+CSE-03-AST-002,CSE-03,CSE-03 Engineering Workstation #2,Engineering Workstation,Critical,973,927
+CSE-03-AST-003,CSE-03,CSE-03 Core Switch #3,Core Switch,Critical,952,888
+CSE-03-AST-004,CSE-03,CSE-03 Domain Controller #4,Domain Controller,Critical,984,934
+CSE-03-AST-005,CSE-03,CSE-03 Core Switch #5,Core Switch,Critical,952,906
+CSE-03-AST-006,CSE-03,CSE-03 Domain Controller #6,Domain Controller,Critical,986,952
+CSE-03-AST-007,CSE-03,CSE-03 Domain Controller #7,Domain Controller,Critical,907,860
+CSE-03-AST-008,CSE-03,CSE-03 Web Application Gateway #8,Web Application Gateway,Critical,913,855
+CSE-03-AST-009,CSE-03,CSE-03 Database Cluster #9,Database Cluster,High,968,920
+CSE-03-AST-010,CSE-03,CSE-03 Core Switch #10,Core Switch,High,923,867
+CSE-03-AST-011,CSE-03,CSE-03 Database Cluster #11,Database Cluster,High,909,864
+CSE-03-AST-012,CSE-03,CSE-03 Engineering Workstation #12,Engineering Workstation,High,912,842
+CSE-03-AST-013,CSE-03,CSE-03 Engineering Workstation #13,Engineering Workstation,High,901,890
+CSE-03-AST-014,CSE-03,CSE-03 Database Cluster #14,Database Cluster,High,921,873
+CSE-03-AST-015,CSE-03,CSE-03 Core Switch #15,Core Switch,High,927,908
+CSE-03-AST-016,CSE-03,CSE-03 Domain Controller #16,Domain Controller,High,921,871
+CSE-03-AST-017,CSE-03,CSE-03 Core Switch #17,Core Switch,High,933,918
+CSE-03-AST-018,CSE-03,CSE-03 Core Switch #18,Core Switch,High,936,888
+CSE-03-AST-019,CSE-03,CSE-03 Engineering Workstation #19,Engineering Workstation,Medium,984,954
+CSE-03-AST-020,CSE-03,CSE-03 Database Cluster #20,Database Cluster,Medium,924,869
+CSE-03-AST-021,CSE-03,CSE-03 Domain Controller #21,Domain Controller,Medium,974,946
+CSE-03-AST-022,CSE-03,CSE-03 Domain Controller #22,Domain Controller,Medium,995,937
+CSE-03-AST-023,CSE-03,CSE-03 Domain Controller #23,Domain Controller,Medium,974,928
+CSE-03-AST-024,CSE-03,CSE-03 Engineering Workstation #24,Engineering Workstation,Medium,920,850
+CSE-03-AST-025,CSE-03,CSE-03 Engineering Workstation #25,Engineering Workstation,Medium,910,891
+CSE-03-AST-026,CSE-03,CSE-03 Domain Controller #26,Domain Controller,Medium,976,902
+CSE-03-AST-027,CSE-03,CSE-03 Database Cluster #27,Database Cluster,Medium,951,882
+CSE-03-AST-028,CSE-03,CSE-03 Engineering Workstation #28,Engineering Workstation,Medium,931,894
+CSE-03-AST-029,CSE-03,CSE-03 Domain Controller #29,Domain Controller,Medium,979,906
+CSE-03-AST-030,CSE-03,CSE-03 Engineering Workstation #30,Engineering Workstation,Medium,972,929
