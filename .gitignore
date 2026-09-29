@@ -1,26 +1,10 @@
-# Frontend
-node_modules/
-dist/
-build/
-
-# Python
+venv/
 __pycache__/
 *.pyc
-.venv/
-venv/
-
-# Environment / secrets
+node_modules/
+dist/
 .env
-.env.*
-
-# Local databases
 *.db
 *.sqlite
 *.sqlite3
-
-# OS files
 .DS_Store
-Thumbs.db
-*.db
-*.sqlite
-*.sqlite3
