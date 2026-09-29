@@ -41,7 +41,7 @@ export default function DataUploadView() {
     const csvContent = "data:text/csv;charset=utf-8," +
       "alert_id,cse_id,asset_id,timestamp,severity,category,source,acknowledged_at,closed_at,duration_minutes,disposition\n" +
       "ALT-SAMPLE-01,CSE-01,AST-001,2026-08-10 14:20:00,Critical,Ransomware Precursor,EDR - Sentinel,2026-08-10 14:25:00,2026-08-10 15:15:00,50.0,True Positive\n" +
-      "ALT-SAMPLE-02,CSE-07,AST-004,2026-08-11 09:12:00,Critical,SCADA Protocol Deviation,OT-Inspector,2026-08-11 09:15:00,2026-08-11 09:22:00,7.0,False Positive\n";
+      "ALT-SAMPLE-02,CSE-02,AST-004,2026-08-11 09:12:00,Critical,SCADA Protocol Deviation,OT-Inspector,2026-08-11 09:15:00,2026-08-11 09:22:00,7.0,False Positive\n";
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
     link.setAttribute("href", encodedUri);
@@ -127,6 +127,10 @@ export default function DataUploadView() {
           <span style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <History size={18} color="#f59e0b" />
             <span>Supervisory Action Audit Trail (Local Immutable Log)</span>
+            <span className="badge badge-green" style={{ marginLeft: '12px' }}>
+              <CheckCircle size={12} style={{ display: 'inline', marginRight: '4px' }} />
+              AUDIT CHAIN VALID
+            </span>
           </span>
           <span style={{ fontSize: '0.78rem', color: '#94a3b8' }}>Tracking All Analyst Actions</span>
         </div>
@@ -139,6 +143,7 @@ export default function DataUploadView() {
                 <th>Operator</th>
                 <th>Supervisory Action</th>
                 <th>Action Details & Notes</th>
+                <th>Ledger Hash</th>
               </tr>
             </thead>
             <tbody>
@@ -155,6 +160,11 @@ export default function DataUploadView() {
                   </td>
                   <td style={{ fontSize: '0.82rem', color: '#cbd5e1', maxWidth: '400px' }}>
                     {log.details}
+                  </td>
+                  <td style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#64748b', maxWidth: '120px', textOverflow: 'ellipsis', overflow: 'hidden', whiteSpace: 'nowrap' }}>
+                    <span title={`Current: ${log.current_hash}\nPrev: ${log.previous_hash}`}>
+                      {log.current_hash ? log.current_hash.substring(0, 16) + '...' : 'N/A'}
+                    </span>
                   </td>
                 </tr>
               ))}

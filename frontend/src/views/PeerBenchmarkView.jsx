@@ -93,11 +93,6 @@ export default function PeerBenchmarkView({ onSelectCSE, onNavigate }) {
                   >
                     <td style={{ fontWeight: '700', color: '#38bdf8', fontFamily: 'var(--font-mono)' }}>
                       {m.cse_id}
-                      {m.cse_id === 'CSE-07' && (
-                        <span className="badge badge-critical" style={{ marginLeft: '6px', fontSize: '0.65rem' }}>
-                          DEMO
-                        </span>
-                      )}
                     </td>
                     <td>{m.sector}</td>
                     <td style={{ fontFamily: 'var(--font-mono)', fontWeight: '700', color: isFast ? '#fb7185' : '#f8fafc' }}>

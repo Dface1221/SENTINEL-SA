@@ -2,13 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { FileText, ExternalLink, Printer, Building, ShieldCheck } from 'lucide-react';
 import { fetchCSEs, getExecutiveReportUrl, getCSEReportUrl } from '../api';
 
-export default function ReportsView({ initialCSE = 'CSE-07' }) {
+export default function ReportsView({ initialCSE = null }) {
   const [cses, setCses] = useState([]);
   const [selectedReport, setSelectedReport] = useState('executive');
   const [selectedCSE, setSelectedCSE] = useState(initialCSE);
 
   useEffect(() => {
-    fetchCSEs().then(setCses).catch(console.error);
+    fetchCSEs().then(data => {
+      setCses(data);
+      if (data.length > 0 && !selectedCSE) {
+        setSelectedCSE(data[0].cse_id);
+      }
+    }).catch(console.error);
   }, []);
 
   const reportUrl = selectedReport === 'executive'

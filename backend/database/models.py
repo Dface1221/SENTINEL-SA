@@ -165,3 +165,22 @@ class AuditLog(Base):
     user = Column(String(100), default="Supervisor (NCIIPC)")
     action = Column(String(100), nullable=False)                  # Login, Dataset Generated, Analysis Executed, Finding Updated, Remediation Created, Report Generated
     details = Column(Text, nullable=True)
+    previous_hash = Column(String(64), nullable=True)
+    current_hash = Column(String(64), nullable=True)
+
+import hashlib
+from sqlalchemy import event
+
+@event.listens_for(AuditLog, 'before_insert')
+def receive_before_insert(mapper, connection, target):
+    # Fetch the last log entry's hash using a direct SQL execution on the connection
+    result = connection.execute(
+        mapper.local_table.select().order_by(mapper.local_table.c.id.desc()).limit(1)
+    ).first()
+    
+    prev_hash = result.current_hash if result and result.current_hash else "0" * 64
+    target.previous_hash = prev_hash
+    
+    # Calculate current hash
+    data_string = f"{target.timestamp}{target.user}{target.action}{target.details}{prev_hash}"
+    target.current_hash = hashlib.sha256(data_string.encode('utf-8')).hexdigest()

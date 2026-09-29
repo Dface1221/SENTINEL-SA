@@ -9,7 +9,7 @@ export default function RemediationView() {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [newAction, setNewAction] = useState({
-    cse_id: 'CSE-07',
+    cse_id: '',
     title: '',
     owner: 'CSE SOC Operations Lead',
     due_date: '2026-10-31',
@@ -31,6 +31,9 @@ export default function RemediationView() {
       ]);
       setActions(actData);
       setCses(cData);
+      if (cData.length > 0 && !newAction.cse_id) {
+        setNewAction(prev => ({ ...prev, cse_id: cData[0].cse_id }));
+      }
     } catch (err) {
       console.error(err);
     } finally {
@@ -57,7 +60,7 @@ export default function RemediationView() {
       await createRemediation(newAction);
       setShowModal(false);
       setNewAction({
-        cse_id: 'CSE-07',
+        cse_id: cses[0]?.cse_id || '',
         title: '',
         owner: 'CSE SOC Operations Lead',
         due_date: '2026-10-31',

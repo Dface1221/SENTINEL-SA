@@ -49,45 +49,47 @@ export default function DashboardView({ onNavigate, onSelectCSE }) {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-      {/* SIH Star Demo Showcase Banner */}
-      <div style={{
-        background: 'linear-gradient(90deg, rgba(244, 63, 94, 0.12) 0%, rgba(245, 158, 11, 0.08) 50%, rgba(15, 23, 42, 0.6) 100%)',
-        border: '1px solid rgba(244, 63, 94, 0.35)',
-        borderRadius: '8px',
-        padding: '16px 20px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-          <div style={{ background: 'rgba(244, 63, 94, 0.2)', padding: '10px', borderRadius: '8px', border: '1px solid #f43f5e' }}>
-            <Flame size={24} color="#f43f5e" />
-          </div>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <span className="badge badge-critical" style={{ fontSize: '0.72rem' }}>HIGH PRIORITY MANUAL REVIEW</span>
-              <span style={{ fontSize: '0.92rem', fontWeight: '700', color: '#f8fafc' }}>
-                Star Demo Case: Northern Regional Load Despatch (CSE-07)
-              </span>
+      {/* Top Entity Showcase Banner */}
+      {topEntities.length > 0 && topEntities[0].attention_score >= 50 && (
+        <div style={{
+          background: 'linear-gradient(90deg, rgba(244, 63, 94, 0.12) 0%, rgba(245, 158, 11, 0.08) 50%, rgba(15, 23, 42, 0.6) 100%)',
+          border: '1px solid rgba(244, 63, 94, 0.35)',
+          borderRadius: '8px',
+          padding: '16px 20px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+            <div style={{ background: 'rgba(244, 63, 94, 0.2)', padding: '10px', borderRadius: '8px', border: '1px solid #f43f5e' }}>
+              <Flame size={24} color="#f43f5e" />
             </div>
-            <div style={{ fontSize: '0.82rem', color: '#cbd5e1', marginTop: '4px' }}>
-              Supervisory Attention Score: <strong style={{ color: '#fb7185' }}>79 / 100</strong>. Detected fast critical closures (-85.5% vs peer), 14 unescalated critical alerts, and 3 SCADA telemetry blind spots.
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <span className="badge badge-critical" style={{ fontSize: '0.72rem' }}>HIGH PRIORITY MANUAL REVIEW</span>
+                <span style={{ fontSize: '0.92rem', fontWeight: '700', color: '#f8fafc' }}>
+                  Supervisory Focus: {topEntities[0].name} ({topEntities[0].cse_id})
+                </span>
+              </div>
+              <div style={{ fontSize: '0.82rem', color: '#cbd5e1', marginTop: '4px' }}>
+                Supervisory Attention Score: <strong style={{ color: '#fb7185' }}>{topEntities[0].attention_score} / 100</strong>. Detected {topEntities[0].findings_count} findings contributing to this score.
+              </div>
             </div>
           </div>
-        </div>
 
-        <button
-          onClick={() => {
-            onSelectCSE('CSE-07');
-            onNavigate('cse-profile');
-          }}
-          className="btn btn-danger"
-          style={{ whiteSpace: 'nowrap' }}
-        >
-          <span>Inspect CSE-07 Story</span>
-          <ArrowRight size={16} />
-        </button>
-      </div>
+          <button
+            onClick={() => {
+              onSelectCSE(topEntities[0].cse_id);
+              onNavigate('cse-profile');
+            }}
+            className="btn btn-danger"
+            style={{ whiteSpace: 'nowrap' }}
+          >
+            <span>Inspect {topEntities[0].cse_id} Story</span>
+            <ArrowRight size={16} />
+          </button>
+        </div>
+      )}
 
       {/* Top KPI Cards Grid */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>

@@ -7,6 +7,11 @@ export default function ReviewQueueView({ onSelectFinding }) {
   const [loading, setLoading] = useState(true);
   const [updatingId, setUpdatingId] = useState(null);
 
+  const [filterPriority, setFilterPriority] = useState('');
+  const [filterCategory, setFilterCategory] = useState('');
+  const [filterCSE, setFilterCSE] = useState('');
+  const [filterStatus, setFilterStatus] = useState('');
+
   useEffect(() => {
     loadQueue();
   }, []);
@@ -35,9 +40,23 @@ export default function ReviewQueueView({ onSelectFinding }) {
     }
   };
 
+  const filteredQueue = queue.filter(item => {
+    if (filterPriority && item.priority !== filterPriority) return false;
+    if (filterCategory && item.category !== filterCategory) return false;
+    if (filterCSE && item.cse_id !== filterCSE) return false;
+    if (filterStatus && item.review_status !== filterStatus) return false;
+    return true;
+  });
+
   if (loading) {
     return <div style={{ padding: '40px', textAlign: 'center', color: '#94a3b8' }}>Loading prioritized review queue...</div>;
   }
+
+  // Extract unique values for filters
+  const uniquePriorities = [...new Set(queue.map(item => item.priority))];
+  const uniqueCategories = [...new Set(queue.map(item => item.category))];
+  const uniqueCSEs = [...new Set(queue.map(item => item.cse_id))];
+  const uniqueStatuses = [...new Set(queue.map(item => item.review_status))];
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
@@ -45,7 +64,7 @@ export default function ReviewQueueView({ onSelectFinding }) {
       <div className="card" style={{ padding: '16px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
           <h3 style={{ fontSize: '1.05rem', fontWeight: '700', color: '#f8fafc' }}>
-            Active Supervisory Triage Queue ({queue.length} items)
+            Active Supervisory Triage Queue ({filteredQueue.length} items)
           </h3>
           <p style={{ fontSize: '0.82rem', color: '#94a3b8', marginTop: '2px' }}>
             Sorted by Risk Weight, Confidence, and Negative-Space Criticality. Update review status to record supervisor decisions.
@@ -59,6 +78,27 @@ export default function ReviewQueueView({ onSelectFinding }) {
         </div>
       </div>
 
+      {/* Filter Bar */}
+      <div className="card" style={{ padding: '12px 20px', display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
+        <span style={{ fontSize: '0.85rem', fontWeight: '600', color: '#cbd5e1' }}>Filters:</span>
+        <select value={filterPriority} onChange={e => setFilterPriority(e.target.value)} style={{ background: '#090d16', border: '1px solid var(--border-subtle)', color: '#f8fafc', padding: '6px 12px', borderRadius: '4px', fontSize: '0.8rem' }}>
+          <option value="">All Priorities</option>
+          {uniquePriorities.map(p => <option key={p} value={p}>{p}</option>)}
+        </select>
+        <select value={filterCategory} onChange={e => setFilterCategory(e.target.value)} style={{ background: '#090d16', border: '1px solid var(--border-subtle)', color: '#f8fafc', padding: '6px 12px', borderRadius: '4px', fontSize: '0.8rem' }}>
+          <option value="">All Categories</option>
+          {uniqueCategories.map(c => <option key={c} value={c}>{c}</option>)}
+        </select>
+        <select value={filterCSE} onChange={e => setFilterCSE(e.target.value)} style={{ background: '#090d16', border: '1px solid var(--border-subtle)', color: '#f8fafc', padding: '6px 12px', borderRadius: '4px', fontSize: '0.8rem' }}>
+          <option value="">All Entities</option>
+          {uniqueCSEs.map(cse => <option key={cse} value={cse}>{cse}</option>)}
+        </select>
+        <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)} style={{ background: '#090d16', border: '1px solid var(--border-subtle)', color: '#f8fafc', padding: '6px 12px', borderRadius: '4px', fontSize: '0.8rem' }}>
+          <option value="">All Statuses</option>
+          {uniqueStatuses.map(s => <option key={s} value={s}>{s}</option>)}
+        </select>
+      </div>
+
       {/* Queue Table */}
       <div className="card">
         <div style={{ overflowX: 'auto' }}>
@@ -67,6 +107,7 @@ export default function ReviewQueueView({ onSelectFinding }) {
               <tr>
                 <th>Priority</th>
                 <th>Entity</th>
+                <th>Category</th>
                 <th>Supervisory Finding</th>
                 <th>Attention Weight</th>
                 <th>Evidence Items</th>
@@ -76,7 +117,7 @@ export default function ReviewQueueView({ onSelectFinding }) {
               </tr>
             </thead>
             <tbody>
-              {queue.map((item) => {
+              {filteredQueue.map((item) => {
                 const isP1 = item.priority === 'P1';
                 const isP2 = item.priority === 'P2';
                 const pColor = isP1 ? '#f43f5e' : (isP2 ? '#f97316' : '#0284c7');
@@ -99,6 +140,9 @@ export default function ReviewQueueView({ onSelectFinding }) {
                     </td>
                     <td style={{ fontWeight: '700', color: '#f8fafc' }}>
                       {item.cse_id}
+                    </td>
+                    <td>
+                      <span className="badge badge-low">{item.category}</span>
                     </td>
                     <td style={{ fontWeight: '600', maxWidth: '320px' }}>
                       {item.title}

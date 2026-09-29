@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 import { fetchCSEProfile, fetchCSEs, getCSEReportUrl } from '../api';
 
-export default function CSEProfileView({ cseId = 'CSE-07', onSelectCSE, onSelectFinding, onNavigate }) {
+export default function CSEProfileView({ cseId = null, onSelectCSE, onSelectFinding, onNavigate }) {
   const [profile, setProfile] = useState(null);
   const [allCSEs, setAllCSEs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -27,11 +27,24 @@ export default function CSEProfileView({ cseId = 'CSE-07', onSelectCSE, onSelect
   const loadData = async (targetId) => {
     try {
       setLoading(true);
-      const [profData, csesData] = await Promise.all([
-        fetchCSEProfile(targetId),
-        fetchCSEs()
-      ]);
-      setProfile(profData);
+      const csesData = await fetchCSEs();
+      
+      let finalId = targetId;
+      if (!finalId && csesData.length > 0) {
+        // Find highest attention score entity
+        const sorted = [...csesData].sort((a, b) => b.attention_score - a.attention_score);
+        finalId = sorted[0].cse_id;
+      }
+      
+      if (finalId) {
+        const profData = await fetchCSEProfile(finalId);
+        setProfile(profData);
+        // Also inform the parent that the CSE has been auto-selected
+        if (!targetId && onSelectCSE) {
+          onSelectCSE(finalId);
+        }
+      }
+      
       setAllCSEs(csesData);
     } catch (err) {
       console.error(err);
@@ -40,7 +53,7 @@ export default function CSEProfileView({ cseId = 'CSE-07', onSelectCSE, onSelect
     }
   };
 
-  if (loading) {
+  if (loading || !profile) {
     return <div style={{ padding: '40px', color: '#94a3b8', textAlign: 'center' }}>Loading CSE Profile dossier...</div>;
   }
 
@@ -50,7 +63,7 @@ export default function CSEProfileView({ cseId = 'CSE-07', onSelectCSE, onSelect
   const findings = profile?.findings || [];
   const remediations = profile?.remediations || [];
 
-  const isStarDemo = entity.cse_id === 'CSE-07';
+  const isHighPriority = entity.attention_score >= 70;
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
@@ -65,9 +78,9 @@ export default function CSEProfileView({ cseId = 'CSE-07', onSelectCSE, onSelect
               <h2 style={{ fontSize: '1.25rem', fontWeight: '800', color: '#f8fafc' }}>
                 {entity.cse_name} ({entity.cse_id})
               </h2>
-              {isStarDemo && (
+              {isHighPriority && (
                 <span className="badge badge-critical" style={{ fontSize: '0.72rem' }}>
-                  FEATURED SIH DEMO CASE
+                  HIGH PRIORITY ENTITY
                 </span>
               )}
             </div>
@@ -113,10 +126,10 @@ export default function CSEProfileView({ cseId = 'CSE-07', onSelectCSE, onSelect
         </div>
       </div>
 
-      {/* Hero Supervisory Story Banner (Especially tailored for CSE-07) */}
+      {/* Hero Supervisory Story Banner */}
       <div style={{
-        background: entity.attention_score >= 70 ? 'linear-gradient(135deg, rgba(244, 63, 94, 0.16) 0%, rgba(20, 30, 51, 0.8) 100%)' : 'linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(20, 30, 51, 0.8) 100%)',
-        border: `1px solid ${entity.attention_score >= 70 ? 'rgba(244, 63, 94, 0.4)' : 'rgba(16, 185, 129, 0.3)'}`,
+        background: isHighPriority ? 'linear-gradient(135deg, rgba(244, 63, 94, 0.16) 0%, rgba(20, 30, 51, 0.8) 100%)' : 'linear-gradient(135deg, rgba(16, 185, 129, 0.12) 0%, rgba(20, 30, 51, 0.8) 100%)',
+        border: `1px solid ${isHighPriority ? 'rgba(244, 63, 94, 0.4)' : 'rgba(16, 185, 129, 0.3)'}`,
         borderRadius: '8px',
         padding: '24px',
         display: 'grid',
@@ -128,12 +141,12 @@ export default function CSEProfileView({ cseId = 'CSE-07', onSelectCSE, onSelect
           <div style={{ fontSize: '0.8rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: '700' }}>
             Supervisory Attention
           </div>
-          <div style={{ fontSize: '3.4rem', fontWeight: '900', color: entity.attention_score >= 70 ? '#fb7185' : '#34d399', fontFamily: 'var(--font-mono)', lineHeight: 1.1, margin: '8px 0' }}>
+          <div style={{ fontSize: '3.4rem', fontWeight: '900', color: isHighPriority ? '#fb7185' : '#34d399', fontFamily: 'var(--font-mono)', lineHeight: 1.1, margin: '8px 0' }}>
             {entity.attention_score}
           </div>
           <div style={{ fontSize: '0.78rem', color: '#94a3b8' }}>out of 100 maximum</div>
           <div style={{ marginTop: '10px' }}>
-            <span className={`badge ${entity.attention_score >= 70 ? 'badge-critical' : 'badge-green'}`} style={{ fontSize: '0.78rem' }}>
+            <span className={`badge ${isHighPriority ? 'badge-critical' : 'badge-green'}`} style={{ fontSize: '0.78rem' }}>
               {entity.review_status}
             </span>
           </div>
@@ -142,33 +155,23 @@ export default function CSEProfileView({ cseId = 'CSE-07', onSelectCSE, onSelect
         {/* Narrative & Reasons */}
         <div>
           <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#f8fafc', marginBottom: '8px', display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <Flame size={18} color="#f43f5e" />
-            <span>Why did SAT-SA prioritize {entity.cse_id}? (Supervisory Evidence Narrative)</span>
+            <Flame size={18} color={isHighPriority ? "#f43f5e" : "#34d399"} />
+            <span>Why did SAT-SA evaluate {entity.cse_id} with this score?</span>
           </div>
 
-          {isStarDemo ? (
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.85rem', color: '#cbd5e1' }}>
-              <div><strong>1. Fast Critical Closures:</strong> Critical alerts closed in median <strong>8.3 min</strong>, which is <strong>85.5% faster</strong> than peer median of 57.2 min.</div>
-              <div><strong>2. Unescalated Critical Threats:</strong> <strong>14+ critical alerts</strong> resolved without escalation to Tier-2 or Incident Response.</div>
-              <div><strong>3. Critical SCADA Telemetry Blind Spots:</strong> <strong>3 designated critical RTUs</strong> generated under 15% expected telemetry during the quarter.</div>
-              <div><strong>4. Chronic Recurring Incidents:</strong> <strong>27 repeated SCADA Protocol Deviation alerts</strong> on the same asset without root-cause remediation.</div>
-              <div><strong>5. Template-Driven Documentation:</strong> <strong>100% textual similarity</strong> across analyst investigation logs, indicating canned triage notes.</div>
-            </div>
-          ) : (
-            <div style={{ fontSize: '0.85rem', color: '#94a3b8', lineHeight: 1.6 }}>
-              {findings.length > 0 ? (
-                findings.slice(0, 4).map((f, i) => (
-                  <div key={f.finding_id} style={{ marginBottom: '6px', color: '#cbd5e1' }}>
-                    <strong>{i + 1}. {f.finding_type}:</strong> {f.title} ({f.severity} severity)
-                  </div>
-                ))
-              ) : (
-                <div style={{ color: '#34d399', fontWeight: '500' }}>
-                  Operational metrics align with established sector peer distributions. No critical execution gaps or negative-space blind spots detected.
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '0.85rem', color: '#cbd5e1' }}>
+            {findings.length > 0 ? (
+              findings.slice(0, 5).map((f, i) => (
+                <div key={f.finding_id} style={{ marginBottom: '6px' }}>
+                  <strong>{i + 1}. {f.finding_type}:</strong> {f.title}
                 </div>
-              )}
-            </div>
-          )}
+              ))
+            ) : (
+              <div style={{ color: '#34d399', fontWeight: '500', marginTop: '8px' }}>
+                Operational metrics align with established sector peer distributions. No critical execution gaps or negative-space blind spots detected.
+              </div>
+            )}
+          </div>
         </div>
       </div>
 

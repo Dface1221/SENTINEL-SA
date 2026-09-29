@@ -118,11 +118,6 @@ export default function CSEsView({ onSelectCSE, onNavigate }) {
                     </td>
                     <td style={{ fontWeight: '600' }}>
                       {c.cse_name}
-                      {c.cse_id === 'CSE-07' && (
-                        <span className="badge badge-critical" style={{ marginLeft: '8px', fontSize: '0.68rem' }}>
-                          STAR DEMO
-                        </span>
-                      )}
                     </td>
                     <td>{c.sector}</td>
                     <td><span className="badge badge-low">{c.criticality}</span></td>

@@ -17,7 +17,7 @@ import FindingDetailModal from './views/FindingDetailModal';
 
 export default function App() {
   const [activeView, setActiveView] = useState('dashboard');
-  const [selectedCSE, setSelectedCSE] = useState('CSE-07');
+  const [selectedCSE, setSelectedCSE] = useState(null);
   const [selectedFindingId, setSelectedFindingId] = useState(null);
   const [refreshKey, setRefreshKey] = useState(0);
 

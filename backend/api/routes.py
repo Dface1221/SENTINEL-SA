@@ -527,5 +527,7 @@ def api_get_audit_logs(db: Session = Depends(get_db)):
         "timestamp": l.timestamp.strftime("%Y-%m-%d %H:%M:%S UTC"),
         "user": l.user,
         "action": l.action,
-        "details": l.details
+        "details": l.details,
+        "current_hash": l.current_hash,
+        "previous_hash": l.previous_hash
     } for l in logs]
