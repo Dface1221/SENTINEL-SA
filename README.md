@@ -1,285 +1,765 @@
-# NCIIPC SAT-SA: Supervisory Analytics Tool for SOC Assessment
+# SAT-SA
 
-[![Smart India Hackathon](https://img.shields.io/badge/SIH-Cybersecurity-blue?style=for-the-badge)](https://www.sih.gov.in/)
-[![Architecture](https://img.shields.io/badge/Architecture-Air--Gapped%20Local-emerald?style=for-the-badge)](#architecture)
-[![License](https://img.shields.io/badge/Mandate-Sec.%2070A%20IT%20Act-navy?style=for-the-badge)](#mandate)
+## Supervisory Analytics Tool for SOC Assessment
 
-> **Supervisory intelligence for National Critical Information Infrastructure Protection Centre (NCIIPC)**  
-> **Shift the Paradigm from Operational SOC Monitoring to Strategic Supervisory Oversight.**
+> **SIH 2026 — Problem Statement SIH26157**
+> A local, air-gapped supervisory analytics platform for assessing Security Operations Center (SOC) performance across Critical Sector Entities.
 
 ---
 
-## 1. Executive Summary & Problem Context
+## Overview
 
-Critical Sector Entities (CSEs)—spanning Power grids, Banking & Financial networks, Telecommunications, Transportation, Strategic Defence, and Healthcare—regularly operate Security Operations Centres (SOCs) and generate periodic alert and case-management reports.
+**SAT-SA (Supervisory Analytics Tool for SOC Assessment)** is a supervisory decision-support platform designed to help oversight teams assess the operational effectiveness of Security Operations Centers (SOCs) serving Critical Sector Entities (CSEs).
 
-Traditional national monitoring approaches attempt to ingest raw SIEM feeds in real time, creating massive bandwidth bottlenecks, operational friction, jurisdiction conflicts, and overwhelming alert fatigue.
+Rather than replacing an organization's SIEM or SOC tooling, SAT-SA works **above the operational layer**.
 
-### The Objective
-**SAT-SA does NOT build another SOC, SIEM, or real-time platform.**  
-Instead, SAT-SA is a **Supervisory Analytics Platform** that evaluates periodic SOC submissions to:
-- Detect operational **Execution Gaps** (e.g., abnormally fast closures of critical events, unescalated high-impact alerts, template-driven copy-paste investigations).
-- Reveal **Negative Space Blind Spots** (what SHOULD exist but is absent: unmonitored critical assets, missing MITRE ATT&CK categories, or silent telemetry ingestion failures).
-- Establish objective **Sector Peer Benchmarks** without arbitrary "best company" rankings.
-- Calculate a transparent, explainable **Supervisory Attention Score (0–100)**.
-- Drive the core loop: **FIND → PROVE → PRIORITIZE → HEAL**.
+It analyzes periodic SOC assessment data and identifies:
+
+* Execution gaps in security workflows
+* Negative-space and visibility gaps
+* Unusual operational patterns
+* Missing expected security activity
+* Deviations from peer-sector baselines
+* Findings requiring supervisory attention
+* Corrective actions and remediation status
+
+The platform emphasizes **explainability, evidence traceability, human review, and audit integrity**.
+
+SAT-SA is designed to operate locally and can function in **air-gapped environments without dependence on cloud services or external AI APIs**.
 
 ---
 
-## 2. Core Paradigm: FIND → PROVE → PRIORITIZE → HEAL
+## The Problem
 
-SAT-SA never issues definitive, adversarial accusations of non-compliance or breach. In accordance with supervisory governance principles, findings are strictly framed as:
-- *"Potential execution gap detected"*
-- *"Requires supervisory review"*
-- *"Potential monitoring blind spot"*
-- *"Evidence indicates..."*
-- *"Recommended corrective action..."*
+Traditional security monitoring platforms are primarily designed for operational SOC teams.
 
+A supervisory organization has a different question:
+
+> **"Is the SOC actually performing the expected security operations, and can we prove where attention is required?"**
+
+A SOC may report that alerts are being processed and cases are being closed, while important execution problems remain hidden.
+
+Examples include:
+
+* Critical alerts being closed unusually quickly
+* Critical alerts lacking escalation records
+* Repetitive investigation notes
+* Repeated alerts without corresponding remediation
+* Critical assets lacking expected telemetry
+* Expected alert categories being absent
+* Unusually low activity from important systems
+
+These are not necessarily visible through conventional volume-based monitoring.
+
+SAT-SA addresses this supervisory gap by looking at both **what happened** and **what should have happened but is missing**.
+
+---
+
+# Core Concept
+
+SAT-SA follows a supervisory analytics pipeline:
+
+```text
+Periodic SOC Data
+        │
+        ▼
+┌───────────────────────┐
+│ Data Normalization    │
+└───────────┬───────────┘
+            │
+            ▼
+┌───────────────────────┐
+│ Supervisory Analytics │
+└───────────┬───────────┘
+            │
+      ┌─────┴─────┐
+      ▼           ▼
+Execution      Negative
+  Gaps          Space
+      │           │
+      └─────┬─────┘
+            ▼
+┌───────────────────────┐
+│ Peer Context &        │
+│ Anomaly Indicators    │
+└───────────┬───────────┘
+            ▼
+┌───────────────────────┐
+│ Attention Prioritizing│
+└───────────┬───────────┘
+            ▼
+┌───────────────────────┐
+│ Human Supervisory     │
+│ Review                │
+└───────────┬───────────┘
+            ▼
+┌───────────────────────┐
+│ Remediation           │
+└───────────┬───────────┘
+            ▼
+┌───────────────────────┐
+│ Tamper-Evident        │
+│ Audit Ledger           │
+└───────────────────────┘
 ```
-┌─────────────────┐       ┌─────────────────┐       ┌─────────────────────┐       ┌─────────────────────┐
-│    1. FIND      │  ──▶  │    2. PROVE     │  ──▶  │   3. PRIORITIZE     │  ──▶  │      4. HEAL        │
-│ Suspicious/weak │       │ Underlying data │       │ Supervisory risk &  │       │ Actionable practical│
-│ operational     │       │ records & peer  │       │ attention scoring   │       │ corrective actions  │
-│ patterns        │       │ baseline delta  │       │ (0–100 scale)       │       │ & verifications     │
-└─────────────────┘       └─────────────────┘       └─────────────────────┘       └─────────────────────┘
+
+### FIND → PROVE → PRIORITIZE → HEAL
+
+SAT-SA's workflow can be summarized as:
+
+**FIND**
+Detect operational deviations and visibility gaps.
+
+**PROVE**
+Trace findings back to supporting records and measurable evidence.
+
+**PRIORITIZE**
+Surface entities and findings requiring supervisory attention.
+
+**HEAL**
+Track recommended corrective actions through remediation and verification.
+
+---
+
+# Key Capabilities
+
+## 1. Supervisory Dashboard
+
+The dashboard provides an overview of the assessment environment.
+
+It presents:
+
+* CSEs assessed
+* Alerts analyzed
+* Cases reviewed
+* Supervisory findings
+* Negative-space indicators
+* Open remediation actions
+* Attention distribution
+* Finding categories
+* Severity distribution
+* High-attention entities
+* Recent audit activity
+
+The dashboard dynamically identifies entities requiring attention based on the analytics results rather than relying on a hardcoded demonstration entity.
+
+---
+
+## 2. Execution Gap Detection
+
+SAT-SA looks for situations where operational activity appears inconsistent with expected SOC procedures.
+
+Examples include:
+
+### Fast Critical Alert Closure
+
+A critical alert is closed significantly faster than expected, potentially indicating insufficient investigation.
+
+### Missing Escalation
+
+A critical alert is processed without the expected escalation workflow.
+
+### Repetitive Investigations
+
+Investigation notes show excessive similarity or template-like behavior.
+
+### Repeated Alerts Without Remediation
+
+The same asset repeatedly generates alerts without evidence of root-cause remediation.
+
+These signals are surfaced as explainable findings rather than opaque model predictions.
+
+---
+
+# 3. Negative-Space Analysis
+
+One of SAT-SA's central concepts is **negative-space detection**.
+
+Instead of asking only:
+
+> "What security activity occurred?"
+
+SAT-SA also asks:
+
+> **"What should have been present, but isn't?"**
+
+Examples:
+
+* Critical assets with insufficient telemetry
+* Expected alert categories with no observed activity
+* Missing investigation records
+* Missing escalation records
+* Missing remediation evidence
+* Unusually low activity from important systems
+
+This helps identify potential visibility gaps that conventional event-count monitoring may overlook.
+
+---
+
+# 4. Explainable Findings
+
+Every supervisory finding is designed to provide an evidence trail.
+
+A typical finding can be understood as:
+
+```text
+Signal
+  ↓
+Expected Baseline
+  ↓
+Observed Value
+  ↓
+Deviation
+  ↓
+Supporting Evidence
+  ↓
+Supervisory Implication
+  ↓
+Recommended Action
 ```
 
+The objective is to ensure that supervisors can understand **why a finding was generated** rather than receiving an unexplained score.
+
 ---
 
-## 3. High-Level Architecture
+# 5. Attention Score
 
+SAT-SA combines relevant supervisory signals into an **Attention Score** used to prioritize entities requiring review.
+
+The score is supported by underlying operational indicators such as:
+
+* Execution gaps
+* Negative-space indicators
+* Investigation behavior
+* Escalation behavior
+* Telemetry coverage
+* Repeated alerts
+* Other measurable operational deviations
+
+The system is designed around explainable deterministic analytics rather than requiring a black-box machine-learning model.
+
+---
+
+# 6. Peer Benchmarking
+
+SAT-SA provides contextual comparison between entities using peer-sector metrics.
+
+The interface focuses on:
+
+* Entity value
+* Peer median
+* Deviation
+* Operational context
+
+Peer benchmarking is intended to provide an objective baseline for supervisory analysis rather than ranking entities as winners or losers.
+
+---
+
+# 7. Supervisory Review Queue
+
+Detected findings can be prioritized through a review queue.
+
+Supervisors can filter findings by:
+
+* Priority
+* Category
+* Entity
+* Status
+
+This allows reviewers to focus on the findings most relevant to their current assessment.
+
+---
+
+# 8. Remediation Tracking
+
+SAT-SA connects findings to corrective actions.
+
+A remediation workflow can include:
+
+```text
+Finding
+   ↓
+Recommended Action
+   ↓
+Owner
+   ↓
+Due Date
+   ↓
+Status
+   ↓
+Verification Metric
 ```
-                 ┌────────────────────────────────┐
-                 │       Human Supervisor         │
-                 └──────────────┬─────────────────┘
-                                │
-                                ▼
- ┌────────────────────────────────────────────────────────────────┐
- │        React Frontend (Vanilla CSS Design System)             │
- │  - High-density Gov-Cybersecurity Dark Navy/Charcoal Theme     │
- │  - 12 Dedicated Functional Views + Interactive Evidence Modals │
- └──────────────────────────────┬─────────────────────────────────┘
-                                │ REST API (Port 8000)
-                                ▼
- ┌────────────────────────────────────────────────────────────────┐
- │              FastAPI Backend (Python 3.11)                     │
- ├────────────────────────────────┬───────────────────────────────┤
- │ Data Ingestion & Validation    │ Synthetic Demo Data Engine    │
- │ (CSV, JSON, SQLite)            │ (12 CSEs, 17,000+ alerts)     │
- ├────────────────────────────────┼───────────────────────────────┤
- │ Supervisory Analytics Engine   │ "Heal the Wound" Engine       │
- │ - Execution Gap Detection      │ - Finding → Action Mapping    │
- │ - Negative Space Detection     │ - Verification Metrics        │
- │ - Peer Benchmarking            │ - Remediation Tracker         │
- │ - Transparent Attention Score  │ - Printable / HTML Reports    │
- │ - Sample Prioritization Engine │ - Ground-Truth Validation     │
- └──────────────────────────────┬─────────────────────────────────┘
-                                │
-                                ▼
- ┌────────────────────────────────────────────────────────────────┐
- │                 Local SQLite Database                          │
- │  - CSEs, Assets, Alerts, Cases, Telemetry, Escalations         │
- │  - Findings, Remediation Actions, Audit Trail, Ground Truth    │
- └────────────────────────────────────────────────────────────────┘
+
+Supported remediation states include:
+
+* Open
+* In Progress
+* Verification Pending
+* Completed
+* Closed
+
+This allows supervisory assessment to continue beyond detection into measurable corrective action.
+
+---
+
+# 9. Tamper-Evident Audit Ledger
+
+SAT-SA maintains a local **SHA-256 chained audit ledger**.
+
+Each audit record is cryptographically linked to the previous record:
+
+```text
+Record 1
+   │
+   └── Hash 1
+          │
+          ▼
+       Record 2
+          │
+          └── Hash 2
+                 │
+                 ▼
+              Record 3
 ```
 
----
+Each record incorporates the previous hash, creating a sequential chain.
 
-## 4. Key Innovations & Differentiators
+The interface provides an integrity status such as:
 
-### A. Negative Space Detection
-Most security tools only analyze what exists. SAT-SA evaluates **what SHOULD exist but is absent**:
-1. **Critical Asset Telemetry Gaps:** Identifies Tier-1 infrastructure assets (e.g. SCADA RTUs, Core Banking DBs) generating < 30% expected telemetry.
-2. **Missing Threat Categories:** Evaluates peer-prevalent MITRE ATT&CK categories (e.g. Ransomware, Lateral Movement) that are completely absent from an entity's telemetry.
-3. **Unusually Low Activity:** Detects entities generating 75%+ fewer alerts than sector peers despite identical critical asset scales.
-4. **Missing Workflow Evidence:** Identifies cases closed without recorded root cause, evidence artifacts, or remediation records.
-
-### B. Transparent Supervisory Attention Score (0–100)
-Unlike opaque "AI black-box" scores, SAT-SA calculates an explicit, auditable composite index:
-- **Detection Coverage & Blind Spots (Max 25 pts)**
-- **Investigation Diligence & Depth (Max 25 pts)**
-- **Escalation Rigor & Compliance (Max 20 pts)**
-- **Critical Asset Telemetry Health (Max 15 pts)**
-- **Operational Consistency & Metric Gaming (Max 15 pts)**
-
-Classification:
-- `0–30`: Normal Monitoring
-- `31–60`: Review Recommended
-- `61–80`: Elevated Supervisory Attention
-- `81–100`: High Priority Manual Review
-
-### C. "Heal the Wound" Local Recommendation Engine
-Every finding maps directly to:
-1. **Operational Impact:** Why this matters to national critical resilience.
-2. **Step-by-Step Corrective Actions:** Practical SOP and configuration changes.
-3. **Quantitative Verification Metrics:** Concrete measurable KPIs (e.g. Critical-alert escalation rate >= 80%, Telemetry coverage >= 95%).
-
-### D. Empirical Ground-Truth Validation (SIH Special)
-Includes a dynamic validation module benchmarking the supervisory engine against embedded synthetic ground truth, calculating live:
-- **Precision:** `TP / (TP + FP)`
-- **Recall:** `TP / (TP + FN)`
-- **F1 Score:** Harmonic mean
-- **Human-in-the-Loop Feedback Calibration:** Tracks supervisor confirmations and dismissals in SQLite.
-
----
-
-## 5. Technology Stack & Air-Gapped Assurance
-
-- **Backend:** Python 3.11, FastAPI, Uvicorn, SQLAlchemy ORM
-- **Analytics:** Pandas, NumPy, Scikit-learn (TF-IDF Cosine Similarity, Isolation Forest)
-- **Database:** Local SQLite (`sat_sa.db`, seamless drop-in transition to PostgreSQL)
-- **Frontend:** React 18, Vite, Lucide React icons, Custom Vanilla CSS Design System
-- **Reporting:** Embedded HTML / Printable Dossiers with official disclaimers
-- **Strictly 100% Offline:** Zero external network calls, zero CDN links, zero OpenAI/cloud API dependencies.
-
----
-
-## 6. Installation & Running Instructions
-
-### Prerequisites
-- Python 3.10+
-- Node.js 18+ and npm
-
-### Quick Start (Development Mode)
-
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/nciipc-sih/sat-sa.git
-   cd sat-sa
-   ```
-
-2. **Install Python Backend Dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Install Frontend Dependencies:**
-   ```bash
-   cd frontend
-   npm install
-   cd ..
-   ```
-
-4. **Launch the FastAPI Backend:**
-   ```bash
-   python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
-   ```
-
-5. **Launch the Vite Frontend:**
-   ```bash
-   cd frontend
-   npm run dev
-   ```
-   Open `http://localhost:5173` in your browser.
-
-### Standalone Single-Process Offline Mode
-You can run the entire system (backend + compiled React frontend) with a single command:
-```bash
-cd frontend && npm run build && cd ..
-python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
+```text
+AUDIT CHAIN ✓ VALID
 ```
-Then navigate to `http://127.0.0.1:8000` to access the full application.
+
+The system deliberately uses the term **tamper-evident audit ledger** rather than claiming to implement a distributed blockchain network.
 
 ---
 
-## 7. 2-Minute SIH Demonstration Script
+# 10. Supervisory Reports
 
-Follow this scripted flow for a high-impact hackathon presentation:
+SAT-SA provides generated assessment reports containing information such as:
 
-| Step | Action | What to Explain to Judges |
-| :--- | :--- | :--- |
-| **1** | Open `http://localhost:5173` | *"SAT-SA is NCIIPC’s Supervisory Analytics Tool for SOC Assessment. Notice our air-gapped dark theme designed for national defense and critical infrastructure oversight."* |
-| **2** | Click **"Generate Demo Dataset"** | *"Generates 12 Critical Sector Entities across 6 sectors with over 17,000 alerts and 6,000 cases over 90 days. Data processing is 100% local."* |
-| **3** | Click **"Run Supervisory Analysis"** | *"Our analytics engine executes execution gap analysis, negative space detection, peer benchmarking, and transparent attention scoring."* |
-| **4** | Point to Top KPI Cards | *"Notice the scale: 17,230 alerts triaged into 28 supervisory signals, highlighting 5 entities requiring review and 7 potential blind spots."* |
-| **5** | Click **"Inspect CSE-07 Story"** | *"Here is our star demo case: Northern Regional Load Despatch (Power Grid), flagged with an Attention Score of 79/100."* |
-| **6** | Show the **5-Reason Narrative** | *"SAT-SA clearly explains why: 1) Critical closures 85.5% faster than peers, 2) 14 unescalated criticals, 3) 3 SCADA telemetry blind spots, 4) 27 repeated unmitigated alerts, 5) template-driven notes."* |
-| **7** | Click finding **"Critical alerts closed unusually quickly"** | *"Drill down into the Finding Detail Modal. Show the explainability matrix, the raw evidence table, and the lifecycle timeline flowchart. Click 'Confirm Finding' to save to SQLite."* |
-| **8** | Navigate to **"Negative Space Heatmap"** | *"Show what SHOULD exist but is absent. Notice the rose and purple blind spots on critical telemetry and omitted threat categories."* |
-| **9** | Navigate to **"Recommended Samples"** | *"Supervisors don't read 17,000 alerts. Our sample engine selects representative alerts with transparent checkmark rationales ('Why this alert was selected')."* |
-| **10** | Navigate to **"Analytics Validation"** | *"Demonstrate empirical evaluation: Precision (100%), Recall (75%), F1 Score (0.86) calculated dynamically against synthetic ground truth."* |
-| **11** | Open **"Supervisory Reports"** | *"Generate the Executive Supervisory Assessment Report and CSE Audit Dossier with official NCIIPC headers and non-compliance disclaimers."* |
+* Executive assessment
+* Assessment period
+* CSE profile
+* Attention Score
+* Major findings
+* Negative-space indicators
+* Peer context
+* Evidence and reasoning
+* Remediation recommendations
+* Audit integrity status
+
+Reports are generated locally.
+
+The current implementation provides an HTML report optimized for browser printing and PDF export through the browser's native **Print → Save as PDF** workflow.
 
 ---
 
-## 8. Directory Layout
+# Architecture
 
+SAT-SA uses a deliberately lightweight local architecture.
+
+```text
+┌──────────────────────────────────────┐
+│              Frontend                │
+│                                      │
+│       React + Vite                   │
+│                                      │
+│ Dashboard / CSE / Findings / Review  │
+│ Negative Space / Benchmark / Reports │
+└──────────────────┬───────────────────┘
+                   │
+                   │ REST API
+                   ▼
+┌──────────────────────────────────────┐
+│              Backend                 │
+│                                      │
+│             FastAPI                  │
+│                                      │
+│ API Routes / Analytics / Reports     │
+└──────────────────┬───────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────┐
+│             Analytics                │
+│                                      │
+│ Execution Gap Detection              │
+│ Negative-Space Analysis              │
+│ Peer Benchmarking                    │
+│ Attention Scoring                    │
+│ Evidence Generation                  │
+└──────────────────┬───────────────────┘
+                   │
+                   ▼
+┌──────────────────────────────────────┐
+│             SQLite                   │
+│                                      │
+│ CSE / Assets / Alerts / Cases        │
+│ Telemetry / Findings / Remediation   │
+│ Audit Ledger                          │
+└──────────────────────────────────────┘
 ```
-sat-sa/
+
+### Technology Stack
+
+| Layer           | Technology            |
+| --------------- | --------------------- |
+| Frontend        | React                 |
+| Build Tool      | Vite                  |
+| Backend         | Python / FastAPI      |
+| ORM             | SQLAlchemy            |
+| Database        | SQLite                |
+| Analytics       | Python                |
+| Reports         | Local HTML generation |
+| Audit Integrity | SHA-256 hash chain    |
+| Deployment      | Local / Air-Gapped    |
+
+---
+
+# Data Model
+
+The core assessment model includes entities such as:
+
+```text
+CSE
+ ├── Assets
+ ├── Alerts
+ ├── Cases
+ ├── Escalations
+ └── Telemetry
+
+Findings
+ ├── Evidence
+ └── Remediation Actions
+
+Audit Logs
+ └── Cryptographic Hash Chain
+```
+
+The demonstration environment uses deterministic synthetic data so that the same assessment scenarios can be reproduced reliably.
+
+---
+
+# Synthetic Assessment Dataset
+
+SAT-SA includes a deterministic synthetic data generator for demonstration and development.
+
+The dataset contains multiple Critical Sector Entities with different operational profiles, including scenarios such as:
+
+* Low activity
+* Telemetry gaps
+* Repeated alerts
+* Missing alert categories
+* Weak investigations
+* Repetitive investigation notes
+* Critical alerts closed unusually quickly
+* Critical alerts without escalation
+
+The deterministic dataset allows the complete supervisory workflow to be demonstrated without requiring access to sensitive real-world SOC data.
+
+---
+
+# Security & Deployment Philosophy
+
+SAT-SA is designed around a **local-first and air-gapped deployment model**.
+
+The prototype does not require:
+
+* Cloud databases
+* Cloud analytics
+* External AI APIs
+* SaaS monitoring platforms
+* PostgreSQL
+* Docker orchestration
+* Internet connectivity during normal application operation
+
+This architecture is intended to support environments where sensitive supervisory assessment data should remain within the local infrastructure.
+
+---
+
+# Project Structure
+
+```text
+SAT-SA/
+│
 ├── backend/
-│   ├── api/
-│   │   ├── __init__.py
-│   │   └── routes.py              # FastAPI REST endpoints
-│   ├── database/
-│   │   ├── __init__.py
-│   │   ├── database.py            # SQLite / Postgres engine & session
-│   │   └── models.py              # SQLAlchemy ORM models
-│   ├── data/
-│   │   ├── __init__.py
-│   │   ├── generator.py           # 12 CSEs synthetic dataset generator
-│   │   └── validators.py          # CSV/JSON ingestion validators
 │   ├── analytics/
-│   │   ├── __init__.py
-│   │   ├── pipeline.py            # Master supervisory pipeline runner
-│   │   ├── execution_gaps.py      # Fast closures, unescalated, weak investigations
-│   │   ├── negative_space.py      # Telemetry gaps, missing categories, low volume
-│   │   ├── peer_benchmark.py      # Sector distributions, medians, percentiles
-│   │   ├── risk_scoring.py        # Transparent 0-100 Attention Score
-│   │   ├── sample_prioritization.py # Intelligent alert sampler with checkmarks
-│   │   ├── anomalies.py           # Local Scikit-Learn Isolation Forest
-│   │   └── validation.py          # Ground-truth precision/recall/F1 evaluator
-│   ├── recommendations/
-│   │   ├── __init__.py
-│   │   └── remediation_engine.py  # "Heal the Wound" mapping & verification metrics
+│   │   ├── execution_gaps.py
+│   │   ├── negative_space.py
+│   │   └── ...
+│   │
+│   ├── api/
+│   │   └── routes.py
+│   │
+│   ├── data/
+│   │   └── generator.py
+│   │
+│   ├── database/
+│   │   ├── database.py
+│   │   └── models.py
+│   │
 │   ├── reports/
-│   │   ├── __init__.py
-│   │   └── generator.py           # Printable HTML report generator
-│   ├── __init__.py
-│   └── main.py                    # App entrypoint and static file mount
+│   │   └── generator.py
+│   │
+│   └── main.py
+│
 ├── frontend/
 │   ├── src/
-│   │   ├── api.js                 # Frontend REST API client
-│   │   ├── App.jsx                # Root application router
-│   │   ├── index.css              # Vanilla CSS dark cybersecurity design system
-│   │   ├── main.jsx               # React DOM root
 │   │   ├── components/
-│   │   │   ├── Sidebar.jsx        # 12-view navigation drawer
-│   │   │   └── TopBar.jsx         # Actions: Generate Data & Run Analysis
-│   │   └── views/
-│   │       ├── DashboardView.jsx  # National command dashboard
-│   │       ├── CSEsView.jsx       # CSE entity directory
-│   │       ├── CSEProfileView.jsx # Star demo & entity dossier
-│   │       ├── FindingsView.jsx   # Filterable findings explorer
-│   │       ├── FindingDetailModal.jsx # FIND->PROVE->PRIORITIZE->HEAL modal
-│   │       ├── ReviewQueueView.jsx # Triage queue with SQLite status updates
-│   │       ├── SamplesView.jsx    # Recommended samples with checkmarks
-│   │       ├── NegativeSpaceView.jsx # 7-pillar color-coded heatmap matrix
-│   │       ├── PeerBenchmarkView.jsx # Sector medians and deviation hub
-│   │       ├── RemediationView.jsx # Corrective action tracker
-│   │       ├── ValidationView.jsx # Ground truth precision/recall evaluator
-│   │       ├── ReportsView.jsx    # Printable supervisory reports
-│   │       └── DataUploadView.jsx # CSV upload and audit trail
+│   │   ├── views/
+│   │   ├── App.jsx
+│   │   └── api.js
+│   │
 │   ├── package.json
 │   └── vite.config.js
-├── sample_data/                   # Sample CSVs (alerts, cases, assets)
-├── tests/
-│   └── test_analytics.py          # Automated integration & regression test suite
-├── Dockerfile                     # Container definition
-├── docker-compose.yml             # Docker compose deployment
-├── requirements.txt               # Python package dependencies
-└── README.md                      # Comprehensive project documentation
+│
+├── requirements.txt
+└── README.md
 ```
 
 ---
 
-## 9. Limitations & Future Roadmap
+# Local Setup
 
-1. **Production Database:** Prototype utilizes local SQLite with WAL mode for zero-configuration laptop demos. In production, configure `DATABASE_URL=postgresql://user:pass@host/sat_sa_db`.
-2. **Automated CSE Connector:** Current ingestion uses batch CSV/JSON upload. Future enhancements include cryptographically signed submission bundles via SFTP or air-gapped diode.
-3. **Federated Threat Intelligence:** Integrating local STIX/TAXII indicator feeds without external internet connectivity.
+## Prerequisites
+
+* Python 3.x
+* Node.js
+* npm
+
+Clone the repository:
+
+```bash
+git clone https://github.com/Dface1221/SENTINEL-SA.git
+cd SENTINEL-SA
+```
 
 ---
 
-## 10. Legal & Compliance Disclaimer
+## Backend
 
-*This tool is designed as an analytical decision-support assistant for authorized supervisory personnel. All indicators, deviation scores, and negative space signals represent statistical alerts for human investigation and do not constitute a definitive finding of legal non-compliance or security compromise.*
+Create/activate the Python environment:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Start the backend:
+
+```bash
+python -m uvicorn backend.main:app --host 127.0.0.1 --port 8000
+```
+
+---
+
+## Frontend
+
+Open another terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The application will be available at:
+
+```text
+http://localhost:5173
+```
+
+---
+
+# Demonstration Workflow
+
+A complete SAT-SA demonstration can be performed using the following sequence:
+
+### 1. Generate Assessment Data
+
+Generate the deterministic local assessment dataset.
+
+### 2. Run Analytics
+
+Execute the supervisory analytics pipeline.
+
+### 3. Review Dashboard
+
+Inspect the overall supervisory picture and attention distribution.
+
+### 4. Inspect a CSE
+
+Open the entity profile and examine the Attention Score and supporting operational indicators.
+
+### 5. Prove a Finding
+
+Open a finding and trace it from:
+
+```text
+Signal → Baseline → Deviation → Evidence
+```
+
+### 6. Inspect Negative Space
+
+Review telemetry and activity gaps that indicate potential visibility problems.
+
+### 7. Compare Peer Context
+
+Use peer-sector medians to understand deviations from comparable entities.
+
+### 8. Review Findings
+
+Use the Review Queue to prioritize supervisory attention.
+
+### 9. Track Remediation
+
+Inspect corrective actions and their verification status.
+
+### 10. Verify Audit Integrity
+
+Open the Tamper-Evident Audit Ledger and verify the hash-chain status.
+
+### 11. Generate the Report
+
+Open the supervisory report and use browser printing if a PDF copy is required.
+
+---
+
+# Example Supervisory Questions
+
+SAT-SA is designed to help answer questions such as:
+
+### Operational Discipline
+
+* Are critical alerts being investigated appropriately?
+* Are critical events being escalated when expected?
+* Are investigations showing meaningful analytical activity?
+
+### Visibility
+
+* Are critical assets producing expected telemetry?
+* Are expected alert categories represented?
+* Are there suspicious gaps in reported activity?
+
+### Supervisory Attention
+
+* Which entities exhibit multiple operational deviations?
+* What evidence supports those deviations?
+* Which findings require human review?
+
+### Remediation
+
+* What corrective action has been recommended?
+* Who owns the action?
+* Has the action reached verification?
+
+### Auditability
+
+* Can supervisory actions be traced?
+* Is the audit chain intact?
+* Can the integrity of the assessment history be verified?
+
+---
+
+# Design Principles
+
+SAT-SA follows several core principles:
+
+### Explainability over opacity
+
+Every important signal should have a reason and supporting evidence.
+
+### Supervision over replacement
+
+SAT-SA complements SOC/SIEM operations rather than replacing them.
+
+### Absence is a signal
+
+Missing expected activity can be as important as observed malicious activity.
+
+### Context over ranking
+
+Peer comparisons provide context without reducing entities to simplistic rankings.
+
+### Human-in-the-loop
+
+Analytics prioritize attention; supervisors make the final assessment.
+
+### Local-first security
+
+Sensitive supervisory data should not require cloud infrastructure.
+
+### Auditability
+
+Important actions should leave a verifiable integrity trail.
+
+---
+
+# Current Prototype Scope
+
+The current implementation is a demonstration-ready supervisory analytics prototype.
+
+It focuses on:
+
+* Synthetic assessment data
+* Deterministic analytics
+* Explainable findings
+* Negative-space detection
+* Peer benchmarking
+* Review workflows
+* Remediation tracking
+* Tamper-evident audit logging
+* Local report generation
+
+Production deployment would require additional work around real-world data ingestion, authentication and authorization, deployment hardening, operational security controls, data validation, integration testing, and organization-specific assessment policies.
+
+---
+
+# SIH 2026
+
+**Problem Statement:** SIH26157
+**Project:** SAT-SA — Supervisory Analytics Tool for SOC Assessment
+**Theme:** Blockchain & Cybersecurity
+**Category:** Software
+
+SAT-SA demonstrates how supervisory analytics can transform periodic SOC operational data into:
+
+```text
+Evidence
+   ↓
+Insight
+   ↓
+Supervisory Attention
+   ↓
+Human Review
+   ↓
+Remediation
+   ↓
+Auditable Outcome
+```
+
+---
+
+## Team
+
+**Team:** ROOT.KNIGHT 
+
+**SIH 2026**
+
+---
+
+## License
+
+Add the appropriate project license before public production/reuse.
+
+---
+
+## Disclaimer
+
+SAT-SA is a prototype developed for demonstration and assessment purposes. The synthetic dataset does not represent real Critical Sector Entity or SOC data.
